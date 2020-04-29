@@ -8,7 +8,7 @@ from .state import State
 from .transition import Transition
 
 LETTERS = "abcdefghijklmnopqrstuvwxyz"
-STATES = list(range(99))
+STATES = list(map(str, range(100)))
 COLUMN_WIDTH = 5
 
 class Automaton(object):
@@ -125,7 +125,7 @@ class Automaton(object):
 
 		# Print each line (state) of the transition table
 		for state in sorted(self.states, key=lambda state: state.state_id):
-			line_header = str(state.state_id)
+			line_header = state.state_id
 			if state.initial or state.terminal:
 				line_header = " " + line_header
 			if state.initial:
@@ -136,7 +136,7 @@ class Automaton(object):
 
 			for letter in sorted(letters, key=lambda letter: letter.character):
 				next_states = state.get_next_states(letter)
-				next_states = " ".join(map(lambda state: str(state.state_id), next_states))
+				next_states = " ".join(map(lambda state: state.state_id, next_states))
 				print("|" + next_states.center(COLUMN_WIDTH), end="")
 			print()
 
@@ -146,11 +146,11 @@ class Automaton(object):
 			alphabet_length = int(f.readline())
 			states_count = int(f.readline())
 
-			initial_states_ids = list(map(int, f.readline().split()))
+			initial_states_ids = f.readline().split()
 			initial_states_count = initial_states_ids[0]
 			initial_states_ids = set(initial_states_ids[1:])
 
-			terminal_states_ids = list(map(int, f.readline().split()))
+			terminal_states_ids = f.readline().split()
 			terminal_states_count = terminal_states_ids[0]
 			terminal_states_ids = set(terminal_states_ids[1:])
 
@@ -179,9 +179,9 @@ class Automaton(object):
 		for i, transitions_desc in enumerate(transitions_descs):
 			match = re.match(r"^(\d+)(\D+)(\d+)\n?$", transitions_desc)
 			if match:
-				state_from_id = int(match.group(1))
+				state_from_id = match.group(1)
 				character = match.group(2)
-				state_to_id = int(match.group(3))
+				state_to_id = match.group(3)
 
 				state_from = automaton.get_state(state_from_id)
 				state_to = automaton.get_state(state_to_id)
