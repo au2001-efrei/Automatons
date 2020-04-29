@@ -10,19 +10,22 @@ def get_epsilon(automaton):
 
 	return None
 
-def get_recursive_next_states(state, letter):
+def get_recursive_next_states(state, letter, parents=set()):
 	next_states = state.get_next_states(letter)
 
 	epsilon = get_epsilon(state.automaton)
 	if epsilon is None: # No epsilon letter found, thus no epsilon transition
 		return next_states
 
+	parents.add(state)
+
 	for asynchronous_state in state.get_next_states(epsilon):
-		next_states.update(get_recursive_next_states(asynchronous_state, letter))
+		if asynchronous_state not in parents:
+			next_states.update(get_recursive_next_states(asynchronous_state, letter))
 
 	return next_states
 
-def is_recursive_initial(state):
+def is_recursive_initial(state, parents=set()):
 	if state.initial:
 		return True
 
@@ -30,13 +33,15 @@ def is_recursive_initial(state):
 	if epsilon is None: # No epsilon letter found, thus no epsilon transition
 		return next_states
 
+	parents.add(state)
+
 	for asynchronous_state in state.get_previous_states(epsilon):
-		if is_recursive_initial(asynchronous_state):
+		if asynchronous_state not in parents and is_recursive_initial(asynchronous_state):
 			return True
 
 	return False
 
-def is_recursive_terminal(state):
+def is_recursive_terminal(state, parents=set()):
 	if state.terminal:
 		return True
 
@@ -44,8 +49,10 @@ def is_recursive_terminal(state):
 	if epsilon is None: # No epsilon letter found, thus no epsilon transition
 		return next_states
 
+	parents.add(state)
+
 	for asynchronous_state in state.get_next_states(epsilon):
-		if is_recursive_terminal(asynchronous_state):
+		if asynchronous_state not in parents and is_recursive_terminal(asynchronous_state):
 			return True
 
 	return False
