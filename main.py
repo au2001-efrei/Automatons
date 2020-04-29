@@ -3,13 +3,14 @@
 import os
 import re
 
-from automaton import Automaton
+from automaton_types.automaton import Automaton
 
+DIRECTORY = "./automatas/"
 FILE_FORMAT = "Int1-8-%d.txt"
 
 def main():
 	automatas = set()
-	for file in os.listdir("automatas"):
+	for file in os.listdir(DIRECTORY):
 		match = re.match(FILE_FORMAT.replace(r"%d", r"(\d+)"), file)
 		if match:
 			automatas.add(int(match.group(1)))
@@ -23,9 +24,9 @@ def main():
 		else:
 			automaton_id = int(input("Enter the ID of the automaton to use amongst %s: " % automaton_list))
 
-	automaton = Automaton.read_automaton_from_file(FILE_FORMAT % automaton_id)
+	file_path = os.path.join(DIRECTORY, FILE_FORMAT % automaton_id)
+	automaton = Automaton.read_automaton_from_file(file_path)
 	automaton.display_automaton()
-
 
 if __name__ == "__main__":
 	main()
