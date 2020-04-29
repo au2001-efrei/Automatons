@@ -13,3 +13,7 @@ class State(object):
 		self.output_state = output_state
 
 		self.automaton.states.add(self)
+		if input_state:
+			self.automaton.input_states.add(self)
+		if output_state:
+			self.automaton.output_states.add(self)
