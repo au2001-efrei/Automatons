@@ -43,3 +43,12 @@ class State(object):
 				next_states.add(transition.state_to)
 
 		return next_states
+
+	def get_previous_states(self, letter):
+		next_states = set()
+
+		for transition in self.transitions_to:
+			if transition.letter == letter:
+				next_states.add(transition.state_from)
+
+		return next_states
