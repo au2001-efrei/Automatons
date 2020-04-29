@@ -29,62 +29,26 @@ class Automaton(object):
 
 		return None
 
-	def read_automaton_from_file(file):
-		# Read the contents of the file
-		with open(file, "r") as f:
-			alphabet_length = int(f.readline())
-			states_count = int(f.readline())
+	def is_asynchronous(self):
+		for transition in self.transitions:
+			if transition.letter.epsilon:
+				return True
 
-			initial_states_ids = list(map(int, f.readline().split()))
-			initial_states_count = initial_states_ids[0]
-			initial_states_ids = set(initial_states_ids[1:])
+		return False
 
-			terminal_states_ids = list(map(int, f.readline().split()))
-			terminal_states_count = terminal_states_ids[0]
-			terminal_states_ids = set(terminal_states_ids[1:])
+	def is_deterministic(self):
+		pairs = set()
 
-			transition_count = int(f.readline())
-			transitions_descs = []
-			for i in range(transition_count):
-				transitions_descs.append(f.readline())
+		for transition in self.transitions:
+			pair = (transition.state_from, transition.letter)
+			if pair in pairs:
+				return False
 
-		# Create the alphabet composed of each letter + epsilon
-		alphabet = Alphabet()
+			pairs.add(pair)
 
-		for character in LETTERS[:alphabet_length]:
-			Letter(alphabet, character)
-		Letter(alphabet, epsilon=True)
+		return True
 
-		# Create a first (empty) automaton
-		automaton = Automaton(alphabet)
-
-		# Add each state
-		for state_id in STATES[:states_count]:
-			initial_state = state_id in initial_states_ids
-			terminal_state = state_id in terminal_states_ids
-			State(automaton, state_id, initial_state=initial_state, terminal_state=terminal_state)
-
-		# Decode and add each transition
-		for i, transitions_desc in enumerate(transitions_descs):
-			match = re.match(r"^(\d+)(\D+)(\d+)\n?$", transitions_desc)
-			if match:
-				state_from_id = int(match.group(1))
-				character = match.group(2)
-				state_to_id = int(match.group(3))
-
-				state_from = automaton.get_state(state_from_id)
-				state_to = automaton.get_state(state_to_id)
-				letter = alphabet.get_letter(character)
-
-				Transition(automaton, state_from, state_to, letter)
-			else:
-				raise Exception("Invalid file format at transition #%d: expected number-character-number in transition but got \"%s\"" % (i, transitions_desc))
-
-		return automaton
-
-	def display_automaton(self):
-		print("AUTOMATON INFORMATION:")
-
+	def display(self):
 		# Print the letters without the epsilon
 		letters = []
 		for letter in self.alphabet.letters:
@@ -141,3 +105,56 @@ class Automaton(object):
 				next_states = " ".join(map(lambda state: str(state.state_id), next_states))
 				print("|" + next_states.center(COLUMN_WIDTH), end="")
 			print()
+
+	def read_from_file(file):
+		# Read the contents of the file
+		with open(file, "r") as f:
+			alphabet_length = int(f.readline())
+			states_count = int(f.readline())
+
+			initial_states_ids = list(map(int, f.readline().split()))
+			initial_states_count = initial_states_ids[0]
+			initial_states_ids = set(initial_states_ids[1:])
+
+			terminal_states_ids = list(map(int, f.readline().split()))
+			terminal_states_count = terminal_states_ids[0]
+			terminal_states_ids = set(terminal_states_ids[1:])
+
+			transition_count = int(f.readline())
+			transitions_descs = []
+			for i in range(transition_count):
+				transitions_descs.append(f.readline())
+
+		# Create the alphabet composed of each letter + epsilon
+		alphabet = Alphabet()
+
+		for character in LETTERS[:alphabet_length]:
+			Letter(alphabet, character)
+		Letter(alphabet, epsilon=True)
+
+		# Create a first (empty) automaton
+		automaton = Automaton(alphabet)
+
+		# Add each state
+		for state_id in STATES[:states_count]:
+			initial_state = state_id in initial_states_ids
+			terminal_state = state_id in terminal_states_ids
+			State(automaton, state_id, initial_state=initial_state, terminal_state=terminal_state)
+
+		# Decode and add each transition
+		for i, transitions_desc in enumerate(transitions_descs):
+			match = re.match(r"^(\d+)(\D+)(\d+)\n?$", transitions_desc)
+			if match:
+				state_from_id = int(match.group(1))
+				character = match.group(2)
+				state_to_id = int(match.group(3))
+
+				state_from = automaton.get_state(state_from_id)
+				state_to = automaton.get_state(state_to_id)
+				letter = alphabet.get_letter(character)
+
+				Transition(automaton, state_from, state_to, letter)
+			else:
+				raise Exception("Invalid file format at transition #%d: expected number-character-number in transition but got \"%s\"" % (i, transitions_desc))
+
+		return automaton
