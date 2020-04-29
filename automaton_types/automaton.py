@@ -22,6 +22,22 @@ class Automaton(object):
 		self.initial_states = initial_states if initial_states is not None else set()
 		self.terminal_states = terminal_states if terminal_states is not None else set()
 
+	def copy(self):
+		alphabet_copy = self.alphabet.copy()
+		automaton_copy = Automaton(alphabet_copy)
+
+		for state in self.states:
+			state.copy(automaton_copy)
+
+			if state.initial:
+				automaton_copy.initial_states.append(state)
+
+			if state.terminal:
+				automaton_copy.terminal_states.append(state)
+
+		for transition in self.transitions:
+			transition.copy(automaton_copy)
+
 	def get_state(self, state_id):
 		for state in self.states:
 			if state.state_id == state_id:

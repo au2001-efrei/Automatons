@@ -18,6 +18,12 @@ class State(object):
 		if terminal_state:
 			self.automaton.terminal_states.add(self)
 
+	def copy(self, automaton=None):
+		if automaton is None:
+			automaton = self.automaton
+
+		return State(automaton, self.state_id, self.initial_state, self.terminal_state)
+
 	def get_next_states(self, letter):
 		next_states = []
 

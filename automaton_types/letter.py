@@ -10,3 +10,9 @@ class Letter(object):
 		self.character = character if character is not None else "*" if self.epsilon else None
 
 		self.alphabet.letters.add(self)
+
+	def copy(self, alphabet=None):
+		if alphabet is None:
+			alphabet = self.alphabet
+
+		return Letter(alphabet, self.character, self.epsilon)

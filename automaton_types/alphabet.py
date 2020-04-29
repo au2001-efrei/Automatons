@@ -7,6 +7,11 @@ class Alphabet(object):
 
 		self.letters = letters if letters is not None else set()
 
+	def copy(self):
+		alphabet_copy = Alphabet()
+		for letter in self.letters:
+			letter.copy(alphabet_copy)
+
 	def get_letter(self, character):
 		for letter in self.letters:
 			if letter.character == character:
