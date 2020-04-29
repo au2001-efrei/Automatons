@@ -31,12 +31,6 @@ class Automaton(object):
 		for state in self.states:
 			state.copy(automaton_copy)
 
-			if state.initial:
-				automaton_copy.initial_states.add(state)
-
-			if state.terminal:
-				automaton_copy.terminal_states.add(state)
-
 		for transition in self.transitions:
 			transition.copy(automaton_copy)
 
