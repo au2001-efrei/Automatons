@@ -22,21 +22,25 @@ class Automaton(object):
 		self.initial_states = initial_states if initial_states is not None else set()
 		self.terminal_states = terminal_states if terminal_states is not None else set()
 
-	def copy(self):
-		alphabet_copy = self.alphabet.copy()
-		automaton_copy = Automaton(alphabet_copy)
+	def copy(self, alphabet=None):
+		if alphabet is None:
+			alphabet = self.alphabet
+
+		automaton_copy = Automaton(alphabet)
 
 		for state in self.states:
 			state.copy(automaton_copy)
 
 			if state.initial:
-				automaton_copy.initial_states.append(state)
+				automaton_copy.initial_states.add(state)
 
 			if state.terminal:
-				automaton_copy.terminal_states.append(state)
+				automaton_copy.terminal_states.add(state)
 
 		for transition in self.transitions:
 			transition.copy(automaton_copy)
+
+		return automaton_copy
 
 	def get_state(self, state_id):
 		for state in self.states:
@@ -128,11 +132,11 @@ class Automaton(object):
 		# Print each line (state) of the transition table
 		for state in sorted(self.states, key=lambda state: state.state_id):
 			line_header = str(state.state_id)
-			if state.initial_state or state.terminal_state:
+			if state.initial or state.terminal:
 				line_header = " " + line_header
-			if state.initial_state:
+			if state.initial:
 				line_header = ">" + line_header
-			if state.terminal_state:
+			if state.terminal:
 				line_header = "<" + line_header
 			print(line_header.center(COLUMN_WIDTH), end="")
 
@@ -173,9 +177,9 @@ class Automaton(object):
 
 		# Add each state
 		for state_id in STATES[:states_count]:
-			initial_state = state_id in initial_states_ids
-			terminal_state = state_id in terminal_states_ids
-			State(automaton, state_id, initial_state=initial_state, terminal_state=terminal_state)
+			initial = state_id in initial_states_ids
+			terminal = state_id in terminal_states_ids
+			State(automaton, state_id, initial=initial, terminal=terminal)
 
 		# Decode and add each transition
 		for i, transitions_desc in enumerate(transitions_descs):
@@ -189,7 +193,7 @@ class Automaton(object):
 				state_to = automaton.get_state(state_to_id)
 				letter = alphabet.get_letter(character)
 
-				Transition(automaton, state_from, state_to, letter)
+				Transition(state_from, state_to, letter)
 			else:
 				raise Exception("Invalid file format at transition #%d: expected number-character-number in transition but got \"%s\"" % (i, transitions_desc))
 
