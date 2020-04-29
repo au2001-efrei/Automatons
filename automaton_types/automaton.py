@@ -9,17 +9,18 @@ from .transition import Transition
 
 LETTERS = "abcdefghijklmnopqrstuvwxyz"
 STATES = list(range(99))
+COLUMN_WIDTH = 5
 
 class Automaton(object):
 
-	def __init__(self, alphabet=None, states=None, transitions=None, input_states=None, output_states=None):
+	def __init__(self, alphabet=None, states=None, transitions=None, initial_states=None, terminal_states=None):
 		super(Automaton, self).__init__()
 
 		self.alphabet = alphabet if alphabet is not None else Alphabet()
 		self.states = states if states is not None else set()
 		self.transitions = transitions if transitions is not None else set()
-		self.input_states = input_states if input_states is not None else set()
-		self.output_states = output_states if output_states is not None else set()
+		self.initial_states = initial_states if initial_states is not None else set()
+		self.terminal_states = terminal_states if terminal_states is not None else set()
 
 	def get_state(self, state_id):
 		for state in self.states:
@@ -34,13 +35,13 @@ class Automaton(object):
 			alphabet_length = int(f.readline())
 			states_count = int(f.readline())
 
-			input_states_ids = list(map(int, f.readline().split()))
-			input_states_count = input_states_ids[0]
-			input_states_ids = set(input_states_ids[1:])
+			initial_states_ids = list(map(int, f.readline().split()))
+			initial_states_count = initial_states_ids[0]
+			initial_states_ids = set(initial_states_ids[1:])
 
-			output_states_ids = list(map(int, f.readline().split()))
-			output_states_count = output_states_ids[0]
-			output_states_ids = set(output_states_ids[1:])
+			terminal_states_ids = list(map(int, f.readline().split()))
+			terminal_states_count = terminal_states_ids[0]
+			terminal_states_ids = set(terminal_states_ids[1:])
 
 			transition_count = int(f.readline())
 			transitions_descs = []
@@ -59,9 +60,9 @@ class Automaton(object):
 
 		# Add each state
 		for state_id in STATES[:states_count]:
-			input_state = state_id in input_states_ids
-			output_state = state_id in output_states_ids
-			State(automaton, state_id, input_state=input_state, output_state=output_state)
+			initial_state = state_id in initial_states_ids
+			terminal_state = state_id in terminal_states_ids
+			State(automaton, state_id, initial_state=initial_state, terminal_state=terminal_state)
 
 		# Decode and add each transition
 		for i, transitions_desc in enumerate(transitions_descs):
@@ -82,7 +83,7 @@ class Automaton(object):
 		return automaton
 
 	def display_automaton(self):
-		print("-" * 10, "Automaton", "-" * 10)
+		print("AUTOMATON INFORMATION:")
 
 		# Print the letters without the epsilon
 		letters = []
@@ -92,25 +93,43 @@ class Automaton(object):
 		letters.sort()
 		print("Alphabet:", *letters)
 
-		# Print the input states
-		input_states = []
-		for state in self.input_states:
-			input_states.append(state.state_id)
-		input_states.sort()
-		print("Input states:", *input_states)
+		# Print the initial states
+		initial_states = []
+		for state in self.initial_states:
+			initial_states.append(state.state_id)
+		initial_states.sort()
+		print("Initial states:", *initial_states)
 
-		# Print the output states
-		output_states = []
-		for state in self.output_states:
-			output_states.append(state.state_id)
-		output_states.sort()
-		print("Output states:", *output_states)
+		# Print the terminal states
+		terminal_states = []
+		for state in self.terminal_states:
+			terminal_states.append(state.state_id)
+		terminal_states.sort()
+		print("Terminal states:", *terminal_states)
 
-		# Print the transitions
-		transitions = []
-		for transition in self.transitions:
-			transitions.append("%d%s%d" % (transition.state_from.state_id, transition.letter.character, transition.state_to.state_id))
-		transitions.sort()
-		print("Output states:", *transitions)
+		# Generate and print the transition table
+		print("Transition table:")
 
-		print("-" * 31)
+		# Filter letters to keep only the ones used
+		letters = []
+		for letter in self.alphabet.letters:
+			for transition in self.transitions:
+				if transition.letter == letter:
+					letters.append(letter)
+					break
+
+		# Print the table's header
+		print("/".center(COLUMN_WIDTH), end="")
+		for letter in sorted(letters, key=lambda letter: letter.character):
+			print("|" + letter.character.center(COLUMN_WIDTH), end="")
+		print()
+		print(("-" * COLUMN_WIDTH + "+") * len(letters) + "-" * COLUMN_WIDTH)
+
+		# Print each line (state) of the transition table
+		for state in sorted(self.states, key=lambda state: state.state_id):
+			print(str(state.state_id).center(COLUMN_WIDTH), end="")
+			for letter in sorted(letters, key=lambda letter: letter.character):
+				next_states = state.get_next_states(letter)
+				next_states = " ".join(map(lambda state: str(state.state_id), next_states))
+				print("|" + next_states.center(COLUMN_WIDTH), end="")
+			print()
