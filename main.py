@@ -4,7 +4,7 @@ import os
 import re
 
 from automaton_types.automaton import Automaton
-from operations.determinization import determinize
+from operations.completion import complete
 
 DIRECTORY = "./automatas/"
 FILE_FORMAT = "Int1-8-%d.txt"
@@ -33,7 +33,7 @@ def main():
 
 	print()
 	print("2. Determinizing and completing automaton...")
-	automaton = determinize(automaton)
+	automaton = complete(automaton)
 	automaton.display()
 
 if __name__ == "__main__":

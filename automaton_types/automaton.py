@@ -55,7 +55,7 @@ class Automaton(object):
 
 		for transition in self.transitions:
 			pair = (transition.state_from, transition.letter)
-			if pair in pairs:
+			if pair in pairs: # There must be at most one pair (from state, letter)
 				return False
 
 			pairs.add(pair)
@@ -66,21 +66,17 @@ class Automaton(object):
 		pairs = set()
 
 		for transition in self.transitions:
-			if transition.letter.epsilon: # A complete automaton must be synchronous?
+			if transition.letter.epsilon: # A complete automaton must be synchronous
 				return False
 
-			pair = (transition.state_from, transition.letter)
-			if pair in pairs: # A complete automaton must be deterministic?
-				return False
-
-			pairs.add(pair)
+			pairs.add((transition.state_from, transition.letter))
 
 		letter_count = 0
-		for letter in self.alphabet_length:
+		for letter in self.alphabet.letters:
 			if not letter.epsilon:
 				letter_count += 1
 
-		return len(pairs) == len(self.states) * letter_count # There must be exactly one pair (from state, letter)
+		return len(pairs) == len(self.states) * letter_count # There must be at least one pair (from state, letter)
 
 	def display(self):
 		# Print the letters without the epsilon

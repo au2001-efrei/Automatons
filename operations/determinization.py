@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 
-from .completion import complete
+from .synchronization import synchronize
 
 def determinize(automaton):
+	# Copy the synchronized automaton not to break the references to the previous one
+	automaton = synchronize(automaton).copy()
+
 	if automaton.is_deterministic():
 		return automaton
-
-	automaton = complete(automaton)
 
 	print("Determinize") # TODO
 
