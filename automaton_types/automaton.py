@@ -127,7 +127,15 @@ class Automaton(object):
 
 		# Print each line (state) of the transition table
 		for state in sorted(self.states, key=lambda state: state.state_id):
-			print(str(state.state_id).center(COLUMN_WIDTH), end="")
+			line_header = str(state.state_id)
+			if state.initial_state or state.terminal_state:
+				line_header = " " + line_header
+			if state.initial_state:
+				line_header = ">" + line_header
+			if state.terminal_state:
+				line_header = "<" + line_header
+			print(line_header.center(COLUMN_WIDTH), end="")
+
 			for letter in sorted(letters, key=lambda letter: letter.character):
 				next_states = state.get_next_states(letter)
 				next_states = " ".join(map(lambda state: str(state.state_id), next_states))
