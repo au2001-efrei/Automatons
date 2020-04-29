@@ -24,6 +24,17 @@ class State(object):
 
 		return State(automaton, self.state_id, self.initial, self.terminal)
 
+	def remove(self):
+		for transition in self.transitions_from:
+			transition.remove()
+
+		for transition in self.transitions_to:
+			transition.remove()
+
+		self.automaton.states.remove(self)
+		self.automaton.initial_states.remove(self)
+		self.automaton.terminal_states.remove(self)
+
 	def get_next_states(self, letter):
 		next_states = set()
 

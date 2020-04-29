@@ -25,3 +25,7 @@ class Transition(object):
 
 		return Transition(state_from_copy, state_to_copy, letter_copy)
 
+	def remove(self):
+		self.state_from.automaton.transitions.remove(self)
+		self.state_from.transitions_from.remove(self)
+		self.state_to.transitions_to.remove(self)
