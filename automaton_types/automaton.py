@@ -64,20 +64,53 @@ class Automaton(object):
 			State(automaton, state_id, input_state=input_state, output_state=output_state)
 
 		# Decode and add each transition
-		for transitions_desc in transitions_descs:
-			match = re.match(r"^(\d+)(\D+)(\d+)\n$", transitions_desc)
+		for i, transitions_desc in enumerate(transitions_descs):
+			match = re.match(r"^(\d+)(\D+)(\d+)\n?$", transitions_desc)
 			if match:
-				from_state_id = automaton.get_state(int(match.group(1)))
+				state_from_id = int(match.group(1))
 				character = match.group(2)
-				to_state_id = automaton.get_state(int(match.group(3)))
+				state_to_id = int(match.group(3))
 
+				state_from = automaton.get_state(state_from_id)
+				state_to = automaton.get_state(state_to_id)
 				letter = alphabet.get_letter(character)
 
-				Transition(automaton, from_state_id, to_state_id, letter)
+				Transition(automaton, state_from, state_to, letter)
 			else:
-				raise Exception("Invalid file format: expected number-character-number in transition")
+				raise Exception("Invalid file format at transition #%d: expected number-character-number in transition but got \"%s\"" % (i, transitions_desc))
 
 		return automaton
 
 	def display_automaton(self):
-		pass
+		print("-" * 10, "Automaton", "-" * 10)
+
+		# Print the letters without the epsilon
+		letters = []
+		for letter in self.alphabet.letters:
+			if not letter.epsilon:
+				letters.append(letter.character)
+		letters.sort()
+		print("Alphabet:", *letters)
+
+		# Print the input states
+		input_states = []
+		for state in self.input_states:
+			input_states.append(state.state_id)
+		input_states.sort()
+		print("Input states:", *input_states)
+
+		# Print the output states
+		output_states = []
+		for state in self.output_states:
+			output_states.append(state.state_id)
+		output_states.sort()
+		print("Output states:", *output_states)
+
+		# Print the transitions
+		transitions = []
+		for transition in self.transitions:
+			transitions.append("%d%s%d" % (transition.state_from.state_id, transition.letter.character, transition.state_to.state_id))
+		transitions.sort()
+		print("Output states:", *transitions)
+
+		print("-" * 31)
