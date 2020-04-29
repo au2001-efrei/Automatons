@@ -1,16 +1,13 @@
 #!/usr/bin/env python3
 
-def determinize(automaton):
-	if automaton.is_asynchronous():
-		return determinize_asynchronous(automaton)
+from .completion import complete
 
+def determinize(automaton):
 	if automaton.is_deterministic():
 		return automaton
 
-	print("Determinize")
+	automaton = complete(automaton)
 
-def determinize_asynchronous(automaton):
-	if not automaton.is_asynchronous():
-		return determinize(automaton)
+	print("Determinize") # TODO
 
-	print("Determinize asynchronous")
+	return automaton

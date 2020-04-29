@@ -32,8 +32,8 @@ def main():
 	automaton.display()
 
 	print()
-	print("2. Determinizing automaton...")
-	determinize(automaton)
+	print("2. Determinizing and completing automaton...")
+	automaton = determinize(automaton)
 	automaton.display()
 
 if __name__ == "__main__":
