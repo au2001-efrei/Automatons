@@ -9,7 +9,6 @@ from .transition import Transition
 
 LETTERS = "abcdefghijklmnopqrstuvwxyz"
 STATES = list(map(str, range(100)))
-COLUMN_WIDTH = 5
 
 class Automaton(object):
 
@@ -112,12 +111,35 @@ class Automaton(object):
 					letters.append(letter)
 					break
 
+		# Calculate each column's width
+		columns_width = [0] * (len(letters) + 1)
+		for i, letter in enumerate(sorted(letters, key=lambda letter: letter.character)):
+			columns_width[i + 1] = max(columns_width[i + 1], len(letter.character))
+
+		for state in sorted(self.states, key=lambda state: state.state_id):
+			column_width = len(state.state_id)
+			if state.initial or state.terminal:
+				column_width += 1
+			if state.initial:
+				column_width += 1
+			if state.terminal:
+				column_width += 1
+
+			columns_width[0] = max(columns_width[0], column_width)
+			for i, letter in enumerate(sorted(letters, key=lambda letter: letter.character)):
+				next_states = state.get_next_states(letter)
+				column_width = sum(map(lambda state: len(state.state_id), next_states)) + len(next_states) - 1
+				columns_width[i + 1] = max(columns_width[i + 1], column_width)
+
 		# Print the table's header
-		print("/".center(COLUMN_WIDTH), end="")
-		for letter in sorted(letters, key=lambda letter: letter.character):
-			print("|" + letter.character.center(COLUMN_WIDTH), end="")
+		print("/".center(columns_width[0] + 2), end="")
+		for i, letter in enumerate(sorted(letters, key=lambda letter: letter.character)):
+			print("|" + letter.character.center(columns_width[i + 1] + 2), end="")
 		print()
-		print(("-" * COLUMN_WIDTH + "+") * len(letters) + "-" * COLUMN_WIDTH)
+		print("-" * (columns_width[0] + 2), end="")
+		for i in range(len(letters)):
+			print("+" + "-" * (columns_width[i + 1] + 2), end="")
+		print()
 
 		# Print each line (state) of the transition table
 		for state in sorted(self.states, key=lambda state: state.state_id):
@@ -128,12 +150,12 @@ class Automaton(object):
 				line_header = ">" + line_header
 			if state.terminal:
 				line_header = "<" + line_header
-			print(line_header.center(COLUMN_WIDTH), end="")
+			print(line_header.center(columns_width[0] + 2), end="")
 
-			for letter in sorted(letters, key=lambda letter: letter.character):
+			for i, letter in enumerate(sorted(letters, key=lambda letter: letter.character)):
 				next_states = state.get_next_states(letter)
 				next_states = " ".join(map(lambda state: state.state_id, next_states))
-				print("|" + next_states.center(COLUMN_WIDTH), end="")
+				print("|" + next_states.center(columns_width[i + 1] + 2), end="")
 			print()
 
 	def read_from_file(file):
