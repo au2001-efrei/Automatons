@@ -18,7 +18,7 @@ def determinize(automaton):
 	# Start by regrouping all the input nodes, then regroup each destination of this state and start again
 	while to_process:
 		from_state, from_letter, processing = to_process.pop(0)
-		new_state_id = ",".join(map(str, sorted(map(lambda state: state.state_id, processing))))
+		new_state_id = ",".join(sorted(map(lambda state: state.state_id, processing)))
 
 		# Create a new single state from the list of previous states which are to be activated at the same time
 		new_state = deterministic_automaton.get_state(new_state_id)
