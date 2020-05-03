@@ -151,9 +151,9 @@ class Automaton(object):
 			if state.initial or state.terminal:
 				line_header = " " + line_header
 			if state.initial:
-				line_header = ">" + line_header
+				line_header = "→" + line_header
 			if state.terminal:
-				line_header = "<" + line_header
+				line_header = "←" + line_header
 			print(line_header.center(columns_width[0] + 2), end="")
 
 			for i, letter in enumerate(sorted(letters, key=lambda letter: letter.character)):
