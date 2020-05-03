@@ -32,6 +32,7 @@ def determinize(automaton):
 			Transition(from_state, new_state, from_letter)
 		else:
 			new_state.initial = True
+			deterministic_automaton.initial_states.add(new_state)
 
 		# If this new state "group" was just created, analyze its outgoing transitions
 		if processed:
@@ -43,6 +44,7 @@ def determinize(automaton):
 			# If at least one of the previous states in the group is terminal, the group is terminal
 			if state.terminal:
 				new_state.terminal = True
+				deterministic_automaton.terminal_states.add(new_state)
 
 			# For each previous state in the group, and each transition of these states, store them in the dictionary
 			for transition in state.transitions_from:

@@ -82,12 +82,12 @@ def synchronize(automaton):
 		# If the state is connected to an initial state through incomming epsilon transitions, mark it as initial
 		if is_recursive_initial(state):
 			state.initial = True
-			automaton.initial_states.add(state)
+			synchronous_automaton.initial_states.add(state)
 
 		# If the state is connected to a terminal state through outgoing epsilon transitions, mark it as terminal
 		if is_recursive_terminal(state):
 			state.terminal = True
-			automaton.terminal_states.add(state)
+			synchronous_automaton.terminal_states.add(state)
 
 		# Remove all epsilon transitions which are now useless
 		for transition in state.transitions_from.copy():
