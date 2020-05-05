@@ -2,11 +2,11 @@
 
 from automaton_types.state import State
 from automaton_types.transition import Transition
-from .determinization import determinize
+from .synchronization import synchronize
 
 def complete(automaton):
-	# Copy the determinized automaton not to break the references to the previous one
-	automaton = determinize(automaton).copy()
+	# Copy the synchronous automaton not to break the references to the previous one
+	automaton = synchronize(automaton)
 
 	if automaton.is_complete():
 		return automaton

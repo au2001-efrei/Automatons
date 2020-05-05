@@ -5,6 +5,7 @@ import re
 
 from automaton_types.automaton import Automaton
 from operations.completion import complete
+from operations.determinization import determinize
 from operations.complementation import complement
 
 DIRECTORY = "./automatas/"
@@ -42,6 +43,7 @@ def main():
 
 		print()
 		print("2. Determinizing and completing automaton...")
+		automaton = determinize(automaton)
 		automaton = complete(automaton)
 		automaton.display()
 
