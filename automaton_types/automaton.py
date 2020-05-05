@@ -81,6 +81,19 @@ class Automaton(object):
 
 		return len(pairs) == len(self.states) * letter_count # There must be at least one pair (from state, letter)
 
+	def is_standard(self):
+		# There must be at most one entry state
+		if len(self.initial_states) > 1:
+			return False
+
+		initial_state = next(iter(self.initial_states))
+
+		for transition in self.transitions:
+			if transition.state_to == initial_state: # There must be no transition pointing to the (unique) initial state
+				return False
+
+		return True
+
 	def display(self):
 		# Print the letters without the epsilon
 		letters = []

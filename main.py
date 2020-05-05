@@ -7,6 +7,7 @@ from automaton_types.automaton import Automaton
 from operations.completion import complete
 from operations.determinization import determinize
 from operations.complementation import complement
+from operations.standardization import standardize
 
 DIRECTORY = "./automatas/"
 FILE_FORMAT = "Int1-8-%d.txt"
@@ -55,7 +56,10 @@ def main():
 		automaton = complement(automaton)
 		automaton.display()
 
-		# TODO: Standardization
+		print()
+		print("4. Standardizing automaton...")
+		automaton = standardize(automaton)
+		automaton.display()
 
 if __name__ == "__main__":
 	main()
