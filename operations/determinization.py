@@ -6,6 +6,7 @@ from automaton_types.transition import Transition
 from .synchronization import synchronize
 
 def determinize(automaton):
+	# Copy the synchronous automaton not to break the references to the previous one
 	automaton = synchronize(automaton)
 
 	if automaton.is_deterministic():

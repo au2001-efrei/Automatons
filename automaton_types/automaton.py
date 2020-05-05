@@ -52,8 +52,8 @@ class Automaton(object):
 	def is_deterministic(self):
 		pairs = set()
 
-		# There must be exactly one entry state
-		if len(self.initial_states) != 1:
+		# There must be at most one entry state
+		if len(self.initial_states) > 1:
 			return False
 
 		for transition in self.transitions:

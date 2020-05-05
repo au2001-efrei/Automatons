@@ -58,11 +58,11 @@ def is_recursive_terminal(state, parents=set()):
 	return False
 
 def synchronize(automaton):
-	if not automaton.is_asynchronous():
-		return automaton
-
 	# Copy the automaton not to break the references to the previous one
 	synchronous_automaton = automaton.copy()
+
+	if not automaton.is_asynchronous():
+		return automaton
 
 	# Find all the non-epsilon letters
 	letters = []
