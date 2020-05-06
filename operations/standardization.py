@@ -23,7 +23,7 @@ def standardize(automaton):
 		# For each current initial state, copy its transitions to the new initial state
 		pairs = set()
 		for transition in state.transitions_from:
-			pair = (transition.state_to, transition.letter)
+			pair = (transition.letter, transition.state_to)
 
 			if pair in pairs:
 				continue

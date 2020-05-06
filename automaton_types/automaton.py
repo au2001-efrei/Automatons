@@ -57,8 +57,8 @@ class Automaton(object):
 			return False
 
 		for transition in self.transitions:
-			pair = (transition.state_from, transition.letter)
-			if pair in pairs: # There must be at most one pair (from state, letter)
+			pair = (transition.letter, transition.state_to)
+			if pair in pairs: # There must be at most one pair (to state, letter)
 				return False
 
 			pairs.add(pair)
@@ -72,14 +72,14 @@ class Automaton(object):
 			if transition.letter.epsilon: # A complete automaton must be synchronous
 				return False
 
-			pairs.add((transition.state_from, transition.letter))
+			pairs.add((transition.letter, transition.state_to))
 
 		letter_count = 0
 		for letter in self.alphabet.letters:
 			if not letter.epsilon:
 				letter_count += 1
 
-		return len(pairs) == len(self.states) * letter_count # There must be at least one pair (from state, letter)
+		return len(pairs) == len(self.states) * letter_count # There must be at least one pair (to state, letter)
 
 	def is_standard(self):
 		# There must be at most one entry state
