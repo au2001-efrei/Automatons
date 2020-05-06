@@ -32,8 +32,10 @@ class State(object):
 			transition.remove()
 
 		self.automaton.states.remove(self)
-		self.automaton.initial_states.remove(self)
-		self.automaton.terminal_states.remove(self)
+		if self.initial:
+			self.automaton.initial_states.remove(self)
+		if self.terminal:
+			self.automaton.terminal_states.remove(self)
 
 	def get_next_states(self, letter):
 		next_states = set()
