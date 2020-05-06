@@ -28,7 +28,7 @@ def determinize(automaton):
 			processed = False
 			new_state = State(deterministic_automaton, new_state_id)
 
-		# Create the incomming transition (either set it to initial or create a transition from the previous state)
+		# Create the incoming transition (either set it to initial or create a transition from the previous state)
 		if from_state is not None and from_letter is not None:
 			Transition(from_state, new_state, from_letter)
 		else:

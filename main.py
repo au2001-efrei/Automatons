@@ -10,7 +10,7 @@ from operations.minimization import minimize
 from operations.complementation import complement
 from operations.standardization import standardize
 
-DIRECTORY = "./automatas/"
+DIRECTORY = "./automatons/"
 FILE_FORMAT = "Int1-8-%d.txt"
 
 def main():

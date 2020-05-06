@@ -39,7 +39,7 @@ def get_recursive_next_states(state, letter, parents=None):
 
 	next_states = state.get_next_states(letter)
 
-	# Add all states which are letter transiton + epsilon transition(s)
+	# Add all states which are letter transition + epsilon transition(s)
 	for next_state in next_states.copy():
 		next_states.update(get_asynchronous_states(next_state))
 
@@ -108,7 +108,7 @@ def synchronize(automaton):
 			for next_state in next_states:
 				Transition(state, next_state, letter)
 
-		# If the state is connected to an initial state through incomming epsilon transitions, mark it as initial
+		# If the state is connected to an initial state through incoming epsilon transitions, mark it as initial
 		if is_recursive_initial(state):
 			state.initial = True
 			synchronous_automaton.initial_states.add(state)
