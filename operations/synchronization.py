@@ -101,6 +101,4 @@ def synchronize(automaton):
 		if transition.letter.epsilon:
 			transition.remove()
 
-	synchronous_automaton.display()
-
 	return synchronous_automaton
