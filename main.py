@@ -4,8 +4,9 @@ import os
 import re
 
 from automaton_types.automaton import Automaton
-from operations.completion import complete
 from operations.determinization import determinize
+from operations.completion import complete
+from operations.minimization import minimize
 from operations.complementation import complement
 from operations.standardization import standardize
 
@@ -48,16 +49,20 @@ def main():
 		automaton = complete(automaton)
 		automaton.display()
 
-		# TODO: Minimization
+		print()
+		print("3. Minimizing automaton...")
+		automaton = minimize(automaton)
+		automaton.display()
+
 		# TODO: Word recognition
 
 		print()
-		print("3. Creating an automaton which recognizes the complementary language...")
+		print("4. Creating an automaton which recognizes the complementary language...")
 		automaton = complement(automaton)
 		automaton.display()
 
 		print()
-		print("4. Standardizing automaton...")
+		print("5. Standardizing automaton...")
 		automaton = standardize(automaton)
 		automaton.display()
 
