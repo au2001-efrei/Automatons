@@ -10,7 +10,10 @@ def get_epsilon(automaton):
 
 	return None
 
-def get_recursive_next_states(state, letter, parents=set()):
+def get_recursive_next_states(state, letter, parents=None):
+	if parents is None:
+		parents = set()
+
 	next_states = state.get_next_states(letter)
 
 	epsilon = get_epsilon(state.automaton)
@@ -25,9 +28,11 @@ def get_recursive_next_states(state, letter, parents=set()):
 
 	return next_states
 
-def is_recursive_initial(state, parents=set()):
+def is_recursive_initial(state, parents=None):
 	if state.initial:
 		return True
+	if parents is None:
+		parents = set()
 
 	epsilon = get_epsilon(state.automaton)
 	if epsilon is None: # No epsilon letter found, thus no epsilon transition
@@ -41,9 +46,11 @@ def is_recursive_initial(state, parents=set()):
 
 	return False
 
-def is_recursive_terminal(state, parents=set()):
+def is_recursive_terminal(state, parents=None):
 	if state.terminal:
 		return True
+	if parents is None:
+		parents = set()
 
 	epsilon = get_epsilon(state.automaton)
 	if epsilon is None: # No epsilon letter found, thus no epsilon transition
@@ -89,9 +96,11 @@ def synchronize(automaton):
 			state.terminal = True
 			synchronous_automaton.terminal_states.add(state)
 
-		# Remove all epsilon transitions which are now useless
-		for transition in state.transitions_from.copy():
-			if transition.letter.epsilon:
-				transition.remove()
+	# Remove all epsilon transitions which are now useless
+	for transition in synchronous_automaton.transitions.copy():
+		if transition.letter.epsilon:
+			transition.remove()
+
+	synchronous_automaton.display()
 
 	return synchronous_automaton
