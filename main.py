@@ -9,6 +9,7 @@ from operations.completion import complete
 from operations.minimization import minimize
 from operations.complementation import complement
 from operations.standardization import standardize
+from operations.recognition import recognize
 
 DIRECTORY = "./automatons/"
 FILE_FORMAT = "Int1-8-%d.txt"
@@ -34,7 +35,7 @@ def main():
 				try:
 					automaton_id = int(automaton_id)
 				except ValueError:
-					if automaton_id.lower() in ["quit", "exit", "q"]:
+					if automaton_id.lower() in ["quit", "exit", "end", "q"]:
 						break
 
 			print()
@@ -54,17 +55,27 @@ def main():
 			automaton = minimize(automaton)
 			automaton.display()
 
-			# TODO: Word recognition
+			print()
+			print("4. Starting word recognition...")
+			recognize(automaton)
 
 			print()
-			print("4. Creating an automaton which recognizes the complementary language...")
+			print("5. Creating an automaton which recognizes the complementary language...")
 			automaton = complement(automaton)
 			automaton.display()
 
 			print()
-			print("5. Standardizing automaton...")
+			print("6. Starting word recognition...")
+			recognize(automaton)
+
+			print()
+			print("7. Standardizing automaton...")
 			automaton = standardize(automaton)
 			automaton.display()
+
+			print()
+			print("8. Starting word recognition...")
+			recognize(automaton)
 	except KeyboardInterrupt:
 		print()
 		pass
