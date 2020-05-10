@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import re
+import sys
 
 from .letter import Letter
 from .alphabet import Alphabet
@@ -94,31 +95,31 @@ class Automaton(object):
 
 		return True
 
-	def display(self):
+	def display(self, file=sys.stdout):
 		# Print the letters without the epsilon
 		letters = []
 		for letter in self.alphabet.letters:
 			if not letter.epsilon:
 				letters.append(letter.character)
 		letters.sort()
-		print("Alphabet:", *letters)
+		print("Alphabet:", *letters, file=file)
 
 		# Print the initial states
 		initial_states = []
 		for state in self.initial_states:
 			initial_states.append(state.state_id)
 		initial_states.sort()
-		print("Initial states:", *initial_states)
+		print("Initial states:", *initial_states, file=file)
 
 		# Print the terminal states
 		terminal_states = []
 		for state in self.terminal_states:
 			terminal_states.append(state.state_id)
 		terminal_states.sort()
-		print("Terminal states:", *terminal_states)
+		print("Terminal states:", *terminal_states, file=file)
 
 		# Generate and print the transition table
-		print("Transition table:")
+		print("Transition table:", file=file)
 
 		# Filter letters to keep only the ones used
 		letters = []
@@ -149,14 +150,14 @@ class Automaton(object):
 				columns_width[i + 1] = max(columns_width[i + 1], column_width)
 
 		# Print the table's header
-		print("/".center(columns_width[0] + 2), end="")
+		print("/".center(columns_width[0] + 2), end="", file=file)
 		for i, letter in enumerate(sorted(letters, key=lambda letter: letter.character)):
-			print("|" + letter.character.center(columns_width[i + 1] + 2), end="")
-		print()
-		print("-" * (columns_width[0] + 2), end="")
+			print("|" + letter.character.center(columns_width[i + 1] + 2), end="", file=file)
+		print(file=file)
+		print("-" * (columns_width[0] + 2), end="", file=file)
 		for i in range(len(letters)):
-			print("+" + "-" * (columns_width[i + 1] + 2), end="")
-		print()
+			print("+" + "-" * (columns_width[i + 1] + 2), end="", file=file)
+		print(file=file)
 
 		# Print each line (state) of the transition table
 		for state in sorted(self.states, key=lambda state: state.state_id):
@@ -167,13 +168,13 @@ class Automaton(object):
 				line_header = "→" + line_header
 			if state.terminal:
 				line_header = "←" + line_header
-			print(line_header.center(columns_width[0] + 2), end="")
+			print(line_header.center(columns_width[0] + 2), end="", file=file)
 
 			for i, letter in enumerate(sorted(letters, key=lambda letter: letter.character)):
 				next_states = state.get_next_states(letter)
 				next_states = " ".join(map(lambda state: state.state_id, next_states))
-				print("|" + next_states.center(columns_width[i + 1] + 2), end="")
-			print()
+				print("|" + next_states.center(columns_width[i + 1] + 2), end="", file=file)
+			print(file=file)
 
 	def read_from_file(file):
 		# Read the contents of the file
