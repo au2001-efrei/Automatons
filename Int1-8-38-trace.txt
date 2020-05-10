@@ -28,7 +28,7 @@ Transition table:
  ← 3  | 3 | 3 
 
 3. Minimizing automaton...
-Current partition: {'2', '1', '0', '3'}
+Current partition: {'3', '0', '2', '1'}
 Alphabet: a b
 Initial states:
 Terminal states: 0+1+2+3
@@ -43,7 +43,7 @@ Execute the program to test word recognition by yourself.
 
 5. Creating an automaton which recognizes the complementary language...
 This automaton is already synchronous.
-This automaton is not deterministic because it has several transitions with the same origin (0+1+2+3) and letter (b).
+This automaton is not deterministic because it has several transitions with the same origin (0+1+2+3) and letter (a).
 This automaton is already synchronous.
 This automaton is incomplete because it misses 2 transition(s).
 Alphabet: a b

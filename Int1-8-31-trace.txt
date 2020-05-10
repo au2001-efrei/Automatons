@@ -6,7 +6,7 @@ Terminal states: 7
 Transition table:
   /  |  *  | a | b 
 -----+-----+---+---
- → 0 | 4 1 |   |   
+ → 0 | 1 4 |   |   
   1  |  3  | 2 |   
   2  |     | 3 | 1 
   3  |  7  |   | 3 
@@ -16,7 +16,7 @@ Transition table:
  ← 7 |     |   |   
 
 2. Determinizing and completing automaton...
-This automaton is asynchronous because it has at least one epsilon transition (0*4).
+This automaton is asynchronous because it has at least one epsilon transition (3*7).
 This automaton is not deterministic because it has 5 initial states (more than one).
 This automaton is already synchronous.
 This automaton is incomplete because it misses 3 transition(s).
@@ -35,9 +35,9 @@ Transition table:
       X       |  X  |    X    
 
 3. Minimizing automaton...
-Current partition: {'3,7', '1,3', '3,4,6,7', '3,5,7', '0,1,3,4,7'} {'X', '2'}
-Current partition: {'3,7', '1,3', '3,4,6,7', '3,5,7', '0,1,3,4,7'} {'X'} {'2'}
-Current partition: {'0,1,3,4,7', '1,3'} {'3,7', '3,5,7', '3,4,6,7'} {'X'} {'2'}
+Current partition: {'3,5,7', '3,7', '0,1,3,4,7', '3,4,6,7', '1,3'} {'X', '2'}
+Current partition: {'3,5,7', '3,7', '0,1,3,4,7', '3,4,6,7', '1,3'} {'2'} {'X'}
+Current partition: {'3,7', '3,5,7', '3,4,6,7'} {'1,3', '0,1,3,4,7'} {'2'} {'X'}
 Alphabet: a b
 Initial states: 0,1,3,4,7+1,3
 Terminal states: 0,1,3,4,7+1,3 3,4,6,7+3,5,7+3,7
@@ -55,7 +55,7 @@ Execute the program to test word recognition by yourself.
 
 5. Creating an automaton which recognizes the complementary language...
 This automaton is already synchronous.
-This automaton is not deterministic because it has several transitions with the same origin (3,4,6,7+3,5,7+3,7) and letter (b).
+This automaton is not deterministic because it has several transitions with the same origin (0,1,3,4,7+1,3) and letter (a).
 This automaton is already synchronous.
 This automaton is already complete.
 Alphabet: a b

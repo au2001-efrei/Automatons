@@ -27,7 +27,7 @@ Transition table:
 
 3. Minimizing automaton...
 Current partition: {'0'} {'2', '1'}
-Current partition: {'0'} {'2'} {'1'}
+Current partition: {'0'} {'1'} {'2'}
 This automaton is already minimized.
 Alphabet: a
 Initial states: 1

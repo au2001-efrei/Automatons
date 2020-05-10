@@ -31,9 +31,9 @@ Transition table:
   X   | X | X | X 
 
 3. Minimizing automaton...
-Current partition: {'2'} {'3', '4', 'X', '1', '0'}
-Current partition: {'2'} {'1', '0'} {'4', 'X', '3'}
-Current partition: {'2'} {'0'} {'1'} {'4', 'X', '3'}
+Current partition: {'2'} {'0', '3', '1', 'X', '4'}
+Current partition: {'2'} {'0', '1'} {'X', '4', '3'}
+Current partition: {'2'} {'0'} {'1'} {'X', '4', '3'}
 Alphabet: a b c
 Initial states: 2
 Terminal states: 2
@@ -51,7 +51,7 @@ Execute the program to test word recognition by yourself.
 
 5. Creating an automaton which recognizes the complementary language...
 This automaton is already synchronous.
-This automaton is not deterministic because it has several transitions with the same origin (3+4+X) and letter (b).
+This automaton is not deterministic because it has several transitions with the same origin (3+4+X) and letter (c).
 This automaton is already synchronous.
 This automaton is already complete.
 Alphabet: a b c

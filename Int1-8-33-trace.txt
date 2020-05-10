@@ -6,8 +6,8 @@ Terminal states: 12
 Transition table:
   /   |  *  | a | b  | c  
 ------+-----+---+----+----
- → 0  | 1 7 |   |    |    
-  1   | 2 4 |   |    |    
+ → 0  | 7 1 |   |    |    
+  1   | 4 2 |   |    |    
   10  |  11 |   |    |    
   11  |  12 |   |    | 11 
  ← 12 |     |   |    |    
@@ -16,12 +16,12 @@ Transition table:
   4   |  5  |   | 4  |    
   5   |     |   |    | 6  
   6   |  12 |   |    |    
-  7   | 9 8 |   |    |    
+  7   | 8 9 |   |    |    
   8   |  11 | 8 |    |    
   9   |     |   | 10 |    
 
 2. Determinizing and completing automaton...
-This automaton is asynchronous because it has at least one epsilon transition (1*2).
+This automaton is asynchronous because it has at least one epsilon transition (7*8).
 This automaton is not deterministic because it has 10 initial states (more than one).
 This automaton is already synchronous.
 This automaton is incomplete because it misses 11 transition(s).
@@ -42,9 +42,9 @@ Transition table:
             X             |    X     |      X       |    X    
 
 3. Minimizing automaton...
-Current partition: {'10,11,12,4,5', '11,12,6', '12,6', '11,12', '0,1,11,12,2,4,5,7,8,9', '11,3,5,8', '11,8'} {'X', '4,5'}
-Current partition: {'11,12', '10,11,12,4,5', '11,12,6'} {'11,3,5,8', '11,8'} {'12,6'} {'0,1,11,12,2,4,5,7,8,9'} {'4,5'} {'X'}
-Current partition: {'10,11,12,4,5'} {'11,12', '11,12,6'} {'11,3,5,8', '11,8'} {'12,6'} {'0,1,11,12,2,4,5,7,8,9'} {'4,5'} {'X'}
+Current partition: {'11,3,5,8', '11,12,6', '12,6', '11,8', '0,1,11,12,2,4,5,7,8,9', '10,11,12,4,5', '11,12'} {'4,5', 'X'}
+Current partition: {'0,1,11,12,2,4,5,7,8,9'} {'11,8', '11,3,5,8'} {'11,12,6', '10,11,12,4,5', '11,12'} {'12,6'} {'4,5'} {'X'}
+Current partition: {'0,1,11,12,2,4,5,7,8,9'} {'11,8', '11,3,5,8'} {'11,12,6', '11,12'} {'10,11,12,4,5'} {'12,6'} {'4,5'} {'X'}
 Alphabet: a b c
 Initial states: 0,1,11,12,2,4,5,7,8,9
 Terminal states: 0,1,11,12,2,4,5,7,8,9 10,11,12,4,5 11,12+11,12,6 11,3,5,8+11,8 12,6
@@ -65,7 +65,7 @@ Execute the program to test word recognition by yourself.
 
 5. Creating an automaton which recognizes the complementary language...
 This automaton is already synchronous.
-This automaton is not deterministic because it has several transitions with the same origin (11,3,5,8+11,8) and letter (c).
+This automaton is not deterministic because it has several transitions with the same origin (11,3,5,8+11,8) and letter (b).
 This automaton is already synchronous.
 This automaton is already complete.
 Alphabet: a b c

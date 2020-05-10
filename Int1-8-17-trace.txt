@@ -10,7 +10,7 @@ Transition table:
  → 1 | 2 1 |     |     |     
  → 2 |     | 2 3 |     |     
  → 3 |     |     | 4 3 |     
- → 4 |     |     |     | 4 5 
+ → 4 |     |     |     | 5 4 
  ← 5 |  0  |  0  |  0  |  0  
 
 2. Determinizing and completing automaton...
@@ -34,10 +34,10 @@ Transition table:
      X     |  X  |  X  |  X  |   X   
 
 3. Minimizing automaton...
-Current partition: {'0,4,5', '4,5'} {'1,2,3,4', '1,2', '2,3', 'X', '3,4', '0'}
-Current partition: {'0,4,5', '4,5'} {'X', '2,3', '1,2', '0'} {'1,2,3,4', '3,4'}
-Current partition: {'0,4,5', '4,5'} {'X', '0', '1,2'} {'2,3'} {'1,2,3,4', '3,4'}
-Current partition: {'0,4,5', '4,5'} {'1,2'} {'X', '0'} {'2,3'} {'1,2,3,4'} {'3,4'}
+Current partition: {'0,4,5', '4,5'} {'3,4', '0', '1,2,3,4', '2,3', '1,2', 'X'}
+Current partition: {'0,4,5', '4,5'} {'3,4', '1,2,3,4'} {'1,2', 'X', '0', '2,3'}
+Current partition: {'0,4,5', '4,5'} {'3,4', '1,2,3,4'} {'1,2', 'X', '0'} {'2,3'}
+Current partition: {'0,4,5', '4,5'} {'3,4'} {'1,2,3,4'} {'X', '0'} {'1,2'} {'2,3'}
 Alphabet: a b c d
 Initial states: 1,2,3,4
 Terminal states: 0,4,5+4,5
@@ -57,7 +57,7 @@ Execute the program to test word recognition by yourself.
 
 5. Creating an automaton which recognizes the complementary language...
 This automaton is already synchronous.
-This automaton is not deterministic because it has several transitions with the same origin (0,4,5+4,5) and letter (a).
+This automaton is not deterministic because it has several transitions with the same origin (0+X) and letter (d).
 This automaton is already synchronous.
 This automaton is already complete.
 Alphabet: a b c d

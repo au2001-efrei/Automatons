@@ -6,7 +6,7 @@ Terminal states: 10
 Transition table:
   /   |  *  | a | b 
 ------+-----+---+---
- → 0  | 1 4 |   |   
+ → 0  | 4 1 |   |   
   1   |     | 2 |   
  ← 10 |     |   |   
   2   |     |   | 3 
@@ -19,7 +19,7 @@ Transition table:
   9   |  10 |   |   
 
 2. Determinizing and completing automaton...
-This automaton is asynchronous because it has at least one epsilon transition (4*8).
+This automaton is asynchronous because it has at least one epsilon transition (4*5).
 This automaton is not deterministic because it has 5 initial states (more than one).
 This automaton is already synchronous.
 This automaton is incomplete because it misses 5 transition(s).
@@ -37,9 +37,9 @@ Transition table:
       X       |    X     |     X      
 
 3. Minimizing automaton...
-Current partition: {'10,6,9', '10,3,5,7,8', '10,2,6,9'} {'X', '0,1,4,5,8', '5,7,8'}
-Current partition: {'10,6,9'} {'10,2,6,9'} {'10,3,5,7,8'} {'X'} {'0,1,4,5,8', '5,7,8'}
-Current partition: {'10,6,9'} {'10,2,6,9'} {'10,3,5,7,8'} {'X'} {'5,7,8'} {'0,1,4,5,8'}
+Current partition: {'10,3,5,7,8', '10,6,9', '10,2,6,9'} {'X', '5,7,8', '0,1,4,5,8'}
+Current partition: {'10,2,6,9'} {'10,6,9'} {'10,3,5,7,8'} {'5,7,8', '0,1,4,5,8'} {'X'}
+Current partition: {'10,2,6,9'} {'10,6,9'} {'10,3,5,7,8'} {'0,1,4,5,8'} {'5,7,8'} {'X'}
 This automaton is already minimized.
 Alphabet: a b
 Initial states: 0,1,4,5,8

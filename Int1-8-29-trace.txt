@@ -15,7 +15,7 @@ Transition table:
 
 2. Determinizing and completing automaton...
 This automaton is already synchronous.
-This automaton is not deterministic because it has several transitions with the same origin (1) and letter (a).
+This automaton is not deterministic because it has several transitions with the same origin (3) and letter (a).
 This automaton is already synchronous.
 This automaton is already complete.
 Alphabet: a
@@ -34,8 +34,8 @@ Transition table:
     ← 3,5    |    0,2    
 
 3. Minimizing automaton...
-Current partition: {'0,2,3,4,5', '0,2,3,4', '0,2,3,5', '0,2', '3,4', '3,5'} {'1', '2,4'}
-Current partition: {'0,2,3,4,5', '0,2,3,4', '0,2,3,5', '0,2', '3,4', '3,5'} {'1'} {'2,4'}
+Current partition: {'3,4', '0,2', '0,2,3,4', '0,2,3,5', '0,2,3,4,5', '3,5'} {'2,4', '1'}
+Current partition: {'3,4', '0,2', '0,2,3,4', '0,2,3,5', '0,2,3,4,5', '3,5'} {'1'} {'2,4'}
 Alphabet: a
 Initial states: 1
 Terminal states: 0,2+0,2,3,4+0,2,3,4,5+0,2,3,5+3,4+3,5
