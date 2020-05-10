@@ -73,6 +73,9 @@ def minimize(automaton, file=None):
 		new_state = next(iter(group))
 		new_state.state_id = "+".join(sorted(map(lambda state: state.state_id, group)))
 
+		incoming_pairs = set()
+		outgoing_pairs = set()
+
 		# For each other state in the group
 		for state in group:
 			if state == new_state:
@@ -80,11 +83,21 @@ def minimize(automaton, file=None):
 
 			# Move its incoming transitions to the new state
 			for transition in state.transitions_from.copy():
+				pair = (transition.state_to, transition.letter)
+				if pair in incoming_pairs:
+					continue
+				incoming_pairs.add(pair)
+
 				Transition(new_state, transition.state_to, transition.letter)
 				transition.remove()
 
 			# Move its outgoing transitions to the new state
 			for transition in state.transitions_to.copy():
+				pair = (transition.state_from, transition.letter)
+				if pair in outgoing_pairs:
+					continue
+				outgoing_pairs.add(pair)
+
 				Transition(transition.state_from, new_state, transition.letter)
 				transition.remove()
 
