@@ -2,8 +2,8 @@
 
 class Letter(object):
 
-	#We initialize the object with the following structure: the alphabet accepted by the automaton,
-	#the epsilon empty state, and the character of the alphabet that will qualify the transition 
+	# We initialize the object with the following structure: the alphabet accepted by the automaton,
+	# the epsilon empty state, and the character of the alphabet that will qualify the transition 
 	def __init__(self, alphabet, character=None, epsilon=None):
 		super(Letter, self).__init__()
 
