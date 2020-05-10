@@ -12,6 +12,10 @@ Transition table:
   3  |   |   | 3 | 1 
 
 2. Determinizing and completing automaton...
+This automaton is already synchronous.
+This automaton is already deterministic.
+This automaton is already synchronous.
+This automaton is incomplete because it misses 6 transition(s).
 Alphabet: a b c d
 Initial states: 0
 Terminal states: 1
@@ -25,6 +29,10 @@ Transition table:
   X  | X | X | X | X 
 
 3. Minimizing automaton...
+Current partition: {'1'} {'X', '2', '0', '3'}
+Current partition: {'1'} {'2', '0', '3'} {'X'}
+Current partition: {'1'} {'3'} {'0'} {'2'} {'X'}
+This automaton is already minimized.
 Alphabet: a b c d
 Initial states: 0
 Terminal states: 1
@@ -42,6 +50,10 @@ This step was skipped in this output file.
 Execute the program to test word recognition by yourself.
 
 5. Creating an automaton which recognizes the complementary language...
+This automaton is already synchronous.
+This automaton is already deterministic.
+This automaton is already synchronous.
+This automaton is already complete.
 Alphabet: a b c d
 Initial states: 0
 Terminal states: 0 2 3 X
@@ -59,6 +71,7 @@ This step was skipped in this output file.
 Execute the program to test word recognition by yourself.
 
 7. Standardizing automaton...
+This automaton is not standard because it has at least one transition with destination the initial state (0a0).
 Alphabet: a b c d
 Initial states: I
 Terminal states: 0 2 3 X

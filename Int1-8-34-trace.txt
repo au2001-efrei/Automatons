@@ -9,12 +9,16 @@ Transition table:
  → 0 | 1 4 |   |   
   1  |  2  | 2 |   
   2  |     |   | 3 
-  3  | 2 6 |   |   
+  3  | 6 2 |   |   
   4  |     |   | 5 
-  5  | 4 6 |   |   
+  5  | 6 4 |   |   
  ← 6 |     |   |   
 
 2. Determinizing and completing automaton...
+This automaton is asynchronous because it has at least one epsilon transition (5*4).
+This automaton is not deterministic because it has 4 initial states (more than one).
+This automaton is already synchronous.
+This automaton is incomplete because it misses 7 transition(s).
 Alphabet: a b c
 Initial states: 0,1,2,4
 Terminal states: 2,3,4,5,6 2,3,6
@@ -28,6 +32,9 @@ Transition table:
       X      | X |     X     | X 
 
 3. Minimizing automaton...
+Current partition: {'2,3,4,5,6', '2,3,6'} {'2', 'X', '0,1,2,4'}
+Current partition: {'2,3,4,5,6', '2,3,6'} {'2', '0,1,2,4'} {'X'}
+Current partition: {'2,3,4,5,6', '2,3,6'} {'0,1,2,4'} {'2'} {'X'}
 Alphabet: a b c
 Initial states: 0,1,2,4
 Terminal states: 2,3,4,5,6+2,3,6
@@ -44,6 +51,10 @@ This step was skipped in this output file.
 Execute the program to test word recognition by yourself.
 
 5. Creating an automaton which recognizes the complementary language...
+This automaton is already synchronous.
+This automaton is not deterministic because it has several transitions with the same origin (2,3,4,5,6+2,3,6) and letter (b).
+This automaton is already synchronous.
+This automaton is already complete.
 Alphabet: a b c
 Initial states: 0,1,2,4
 Terminal states: 0,1,2,4 2 X
@@ -60,6 +71,7 @@ This step was skipped in this output file.
 Execute the program to test word recognition by yourself.
 
 7. Standardizing automaton...
+This automaton is already standard.
 Alphabet: a b c
 Initial states: 0,1,2,4
 Terminal states: 0,1,2,4 2 X

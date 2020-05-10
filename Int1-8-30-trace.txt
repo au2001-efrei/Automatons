@@ -13,6 +13,10 @@ Transition table:
  ← 4 | 0 
 
 2. Determinizing and completing automaton...
+This automaton is already synchronous.
+This automaton is already deterministic.
+This automaton is already synchronous.
+This automaton is already complete.
 Alphabet: a
 Initial states: 1
 Terminal states: 0 3 4
@@ -26,6 +30,8 @@ Transition table:
  ← 4 | 0 
 
 3. Minimizing automaton...
+Current partition: {'4', '0', '3'} {'2', '1'}
+Current partition: {'4', '0', '3'} {'1'} {'2'}
 Alphabet: a
 Initial states: 1
 Terminal states: 0+3+4
@@ -41,6 +47,10 @@ This step was skipped in this output file.
 Execute the program to test word recognition by yourself.
 
 5. Creating an automaton which recognizes the complementary language...
+This automaton is already synchronous.
+This automaton is not deterministic because it has several transitions with the same origin (0+3+4) and letter (a).
+This automaton is already synchronous.
+This automaton is already complete.
 Alphabet: a
 Initial states: 1
 Terminal states: 1 2
@@ -56,6 +66,7 @@ This step was skipped in this output file.
 Execute the program to test word recognition by yourself.
 
 7. Standardizing automaton...
+This automaton is already standard.
 Alphabet: a
 Initial states: 1
 Terminal states: 1 2
