@@ -16,7 +16,7 @@ def standardize(automaton):
 	for state in automaton.initial_states.copy():
 		if state == initial_state:
 			continue
-
+		# After adding the new initial state, we remove all previous initial states from the initial states list	
 		state.initial = False
 		automaton.initial_states.remove(state)
 
