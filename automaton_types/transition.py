@@ -2,6 +2,8 @@
 
 class Transition(object):
 
+	#We initialize the object with the following structure: the state before and after the transition,
+	#and the name of the transition
 	def __init__(self, state_from, state_to, letter):
 		super(Transition, self).__init__()
 
