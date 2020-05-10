@@ -2,11 +2,13 @@
 
 class Letter(object):
 
-	# We initialize the object with the following structure: the alphabet accepted by the automaton,
-	# the epsilon empty state, and the character of the alphabet that will qualify the transition 
 	def __init__(self, alphabet, character=None, epsilon=None):
 		super(Letter, self).__init__()
 
+		# We initialize the object with the following structure:
+		# the alphabet this letter belongs to,
+		# whether this letter is an epsilon (asynchronous) transition,
+		# and the character representing this letter (a string of length 1)
 		self.alphabet = alphabet
 		self.epsilon = epsilon if epsilon is not None else (character == "*")
 		self.character = character if character is not None else "*" if self.epsilon else None

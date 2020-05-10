@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
-	# We initialize the object with the letters recognized by the alphabet of the automaton
 class Alphabet(object):
 
 	def __init__(self, letters=None):
 		super(Alphabet, self).__init__()
 
+		# We initialize the object with the letters recognized by the alphabet of the automaton
 		self.letters = letters if letters is not None else set()
 
 	def copy(self):

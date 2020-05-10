@@ -2,15 +2,18 @@
 
 class Transition(object):
 
-	# We initialize the object with the following structure: the state before and after the transition,
-	# and the name of the transition
 	def __init__(self, state_from, state_to, letter):
 		super(Transition, self).__init__()
 
+		# We initialize the object with the following structure:
+		# the origin state,
+		# the destination state,
+		# the letter of this transition
 		self.state_from = state_from
 		self.state_to = state_to
 		self.letter = letter
 
+		# The origin and destination must belong to the same automaton, "bridges" between automatons are forbidden
 		assert self.state_from.automaton == self.state_to.automaton
 
 		self.state_from.automaton.transitions.add(self)

@@ -10,8 +10,8 @@ def get_epsilon(automaton):
 
 	return None
 
+# This function returns all states connected with an empty state transition
 def get_asynchronous_states(state, epsilon=None, parents=None):
-	# This function returns all states connected with an empty state transition
 	if parents is None:
 		parents = set()
 	elif state in parents:
@@ -51,8 +51,8 @@ def get_recursive_next_states(state, letter, parents=None):
 
 	return next_states
 
+# This function returns true if there is one or more epsilon transition from any initial state to the given state
 def is_recursive_initial(state, parents=None):
-	# This definition returns true if there is an epsilon transition on an intial state
 	if state.initial:
 		return True
 	if parents is None:
@@ -70,8 +70,8 @@ def is_recursive_initial(state, parents=None):
 
 	return False
 
+# This functions returns true if there is one or more epsilon transition from the given state to any terminal state
 def is_recursive_terminal(state, parents=None):
-	# This definition returns true if there is an epsilon transition on an terminal state
 	if state.terminal:
 		return True
 	if parents is None:

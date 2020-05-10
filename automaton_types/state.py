@@ -2,11 +2,14 @@
 
 class State(object):
 
-	# We initialize the object with the following structure: automaton, the name of the state, the incoming and outgoing
-	# transitions, such as info wether the state is terminal or initial or neither.
 	def __init__(self, automaton, state_id, initial=False, terminal=False):
 		super(State, self).__init__()
 
+		# We initialize the object with the following structure:
+		# the automaton,
+		# the name of the state,
+		# the incoming and outgoing transitions (by default both are empty),
+		# whether the state is terminal and/or initial
 		self.automaton = automaton
 		self.state_id = state_id
 		self.transitions_from = set()
@@ -26,8 +29,7 @@ class State(object):
 
 		return State(automaton, self.state_id, self.initial, self.terminal)
 
-# Function to remove state, outgoing/incoming transitions, and to remove the state from
-# the initial/final state list if it was one
+	# Function to remove a state, all its incoming/outgoing transitions, and to remove the state from the initial/final state list of the automaton if it was one
 	def remove(self):
 		for transition in self.transitions_from:
 			transition.remove()
@@ -41,7 +43,7 @@ class State(object):
 		if self.terminal:
 			self.automaton.terminal_states.remove(self)
 
-# Go through all outgoing transitions with a for loop to get the next state
+	# Go through all outgoing transitions and return all the destinations of transitions with the given letter
 	def get_next_states(self, letter):
 		next_states = set()
 
@@ -51,7 +53,7 @@ class State(object):
 
 		return next_states
 
-# Go through all incoming transitions with a for loop to get the previous states
+	# Go through all incoming transitions and return all the origins of transitions with the given letter
 	def get_previous_states(self, letter):
 		next_states = set()
 

@@ -12,11 +12,14 @@ LETTERS = "abcdefghijklmnopqrstuvwxyz"
 STATES = list(map(str, range(100)))
 
 class Automaton(object):
-	# We initialize the object with the following structure: the alphabet accepted by the automaton,
-	# the states within the automaton, the transitions, and the initial and final states
 	def __init__(self, alphabet=None, states=None, transitions=None, initial_states=None, terminal_states=None):
 		super(Automaton, self).__init__()
 
+		# We initialize the object with the following structure:
+		# the alphabet accepted by the automaton,
+		# the states within the automaton,
+		# the transitions, and
+		# the initial and final states
 		self.alphabet = alphabet if alphabet is not None else Alphabet()
 		self.states = states if states is not None else set()
 		self.transitions = transitions if transitions is not None else set()
@@ -60,9 +63,8 @@ class Automaton(object):
 			return False
 
 		for transition in self.transitions:
-			# We generate a list of pairs containing the state before the transition
-			# and the name of the transition
-			pair = (transition.state_from, transition.letter) 
+			# We generate a list of pairs containing the state before the transition and the name of the transition
+			pair = (transition.state_from, transition.letter)
 			if pair in pairs: # Each pair of the automaton's transitions must be unique
 				return False
 
