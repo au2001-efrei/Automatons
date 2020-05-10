@@ -31,10 +31,10 @@ class State(object):
 
 	# Function to remove a state, all its incoming/outgoing transitions, and to remove the state from the initial/final state list of the automaton if it was one
 	def remove(self):
-		for transition in self.transitions_from:
+		for transition in self.transitions_from.copy():
 			transition.remove()
 
-		for transition in self.transitions_to:
+		for transition in self.transitions_to.copy():
 			transition.remove()
 
 		self.automaton.states.remove(self)
