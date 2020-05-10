@@ -3,13 +3,13 @@
 import os
 import re
 
-from L2_Int1_8_1_automaton import Automaton
-from L2_Int1_8_1_determinization import determinize
-from L2_Int1_8_1_completion import complete
-from L2_Int1_8_1_minimization import minimize
-from L2_Int1_8_1_complementation import complement
-from L2_Int1_8_1_standardization import standardize
-from L2_Int1_8_1_recognition import recognize
+from L2_Int1_8_automaton import Automaton
+from L2_Int1_8_determinization import determinize
+from L2_Int1_8_completion import complete
+from L2_Int1_8_minimization import minimize
+from L2_Int1_8_complementation import complement
+from L2_Int1_8_standardization import standardize
+from L2_Int1_8_recognition import recognize
 
 FILE_FORMAT = "Int1-8-%d.txt"
 

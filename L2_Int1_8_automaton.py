@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
 
 import re
-import sys
 
-from L2_Int1_8_1_letter import Letter
-from L2_Int1_8_1_alphabet import Alphabet
-from L2_Int1_8_1_state import State
-from L2_Int1_8_1_transition import Transition
+from L2_Int1_8_letter import Letter
+from L2_Int1_8_alphabet import Alphabet
+from L2_Int1_8_state import State
+from L2_Int1_8_transition import Transition
 
 LETTERS = "abcdefghijklmnopqrstuvwxyz"
 STATES = list(map(str, range(100)))
@@ -48,35 +47,40 @@ class Automaton(object):
 		return None
 
 	# To check if an automata is asynchronous, we must check if it contains an empty state
-	def is_asynchronous(self):
+	def is_asynchronous(self, file=None):
 		for transition in self.transitions:
 			if transition.letter.epsilon:
+				print("This automaton is asynchronous because it has at least one epsilon transition (%s%s%s)." % (transition.state_from.state_id, transition.letter.character, transition.state_to.state_id), file=file)
 				return True
 
+		print("This automaton is already synchronous.", file=file)
 		return False
 
-	def is_deterministic(self):
-		pairs = set()
-
+	def is_deterministic(self, file=None):
 		# There must be at most one entry state
 		if len(self.initial_states) > 1:
+			print("This automaton is not deterministic because it has %d initial states (more than one)." % len(self.initial_states), file=file)
 			return False
 
+		pairs = set()
 		for transition in self.transitions:
 			# We generate a list of pairs containing the state before the transition and the name of the transition
 			pair = (transition.state_from, transition.letter)
 			if pair in pairs: # Each pair of the automaton's transitions must be unique
+				print("This automaton is not deterministic because it has several transitions with the same origin (%s) and letter (%s)." % (transition.state_from.state_id, transition.letter.character), file=file)
 				return False
 
 			pairs.add(pair)
 
+		print("This automaton is already deterministic.", file=file)
 		return True
 
-	def is_complete(self):
+	def is_complete(self, file=None):
 		pairs = set()
 
 		for transition in self.transitions:
 			if transition.letter.epsilon: # A complete automaton must be synchronous
+				print("This automaton cannot be complete because it is asynchronous.", file=file)
 				return False
 
 			pairs.add((transition.state_from, transition.letter))
@@ -86,22 +90,30 @@ class Automaton(object):
 			if not letter.epsilon:
 				letter_count += 1
 
-		return len(pairs) == len(self.states) * letter_count # There must be at least one pair (from state, letter)
+		if len(pairs) >= len(self.states) * letter_count: # There must be at least one pair (from state, letter)
+			print("This automaton is already complete.", file=file)
+			return True
+		else:
+			print("This automaton is incomplete because it misses %d transition(s)." % (len(self.states) * letter_count - len(pairs)), file=file)
+			return False
 
-	def is_standard(self):
+	def is_standard(self, file=None):
 		# There must be at most one entry state
 		if len(self.initial_states) > 1:
+			print("This automaton is not standard because it has %d initial states (more than one)." % len(self.initial_states), file=file)
 			return False
 
 		initial_state = next(iter(self.initial_states))
 
 		for transition in self.transitions:
 			if transition.state_to == initial_state: # There must be no transition pointing to the (unique) initial state
+				print("This automaton is not standard because it has at least one transition with destination the initial state (%s%s%s)." % (transition.state_from.state_id, transition.letter.character, transition.state_to.state_id), file=file)
 				return False
 
+		print("This automaton is already standard.", file=file)
 		return True
 
-	def display(self, file=sys.stdout):
+	def display(self, file=None):
 		# Print the letters without the epsilon
 		letters = []
 		for letter in self.alphabet.letters:
@@ -182,7 +194,7 @@ class Automaton(object):
 				print("|" + next_states.center(columns_width[i + 1] + 2), end="", file=file)
 			print(file=file)
 
-	def read_from_file(file):
+	def read_from_file(file=None):
 		# Read the contents of the file
 		with open(file, "r") as f:
 			alphabet_length = int(f.readline())

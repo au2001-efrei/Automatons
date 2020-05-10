@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
-from L2_Int1_8_1_transition import Transition
+from L2_Int1_8_transition import Transition
 
-def minimize(automaton):
+def minimize(automaton, file=None):
 	# Copy the automaton not to break the references to the previous one
 	automaton = automaton.copy()
 
@@ -16,6 +16,7 @@ def minimize(automaton):
 	# While there is at least one group which was split, continue to test and divide them
 	divided = True
 	while divided:
+		print("Current partition:", *map(lambda group: set(map(lambda state: state.state_id, group)), partition), file=file)
 		new_partition = []
 		divided = False
 
@@ -56,6 +57,11 @@ def minimize(automaton):
 
 		# At the end of each step, store the new partition and if needed, start again to try to divide it once again
 		partition = new_partition
+
+	# If all groups are of length 1, then the automaton was already minimized
+	if max(map(len, partition)) == 1:
+		print("This automaton is already minimized.", file=file)
+		return automaton
 
 	# Once the final partition is found, merge the states in a same group
 	for group in partition:

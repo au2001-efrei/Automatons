@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
-from L2_Int1_8_1_state import State
-from L2_Int1_8_1_transition import Transition
+from L2_Int1_8_state import State
+from L2_Int1_8_transition import Transition
 
-def standardize(automaton):
+def standardize(automaton, file=None):
 	# Copy the automaton not to break the references to the previous one
 	automaton = automaton.copy()
 
-	if automaton.is_standard():
+	if automaton.is_standard(file=file):
 		return automaton
 
 	# Create a new initial state

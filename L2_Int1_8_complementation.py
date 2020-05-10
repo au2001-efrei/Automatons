@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 
-from L2_Int1_8_1_determinization import determinize
-from L2_Int1_8_1_completion import complete
+from L2_Int1_8_determinization import determinize
+from L2_Int1_8_completion import complete
 
-def complement(automaton):
+def complement(automaton, file=None):
 	# Copy the complete deterministic automaton not to break the references to the previous one
-	automaton = complete(determinize(automaton)).copy()
+	automaton = complete(determinize(automaton, file=file), file=file).copy()
 
 	for state in automaton.states:
 		# Invert the terminal and non-terminal states

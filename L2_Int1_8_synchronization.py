@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from L2_Int1_8_1_transition import Transition
+from L2_Int1_8_transition import Transition
 
 def get_epsilon(automaton):
 	for letter in automaton.alphabet.letters:
@@ -89,11 +89,11 @@ def is_recursive_terminal(state, parents=None):
 
 	return False
 
-def synchronize(automaton):
+def synchronize(automaton, file=None):
 	# Copy the automaton not to break the references to the previous one
 	synchronous_automaton = automaton.copy()
 
-	if not automaton.is_asynchronous():
+	if not automaton.is_asynchronous(file=file):
 		return automaton
 
 	# Find all the non-epsilon letters

@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 
-from L2_Int1_8_1_automaton import Automaton
-from L2_Int1_8_1_state import State
-from L2_Int1_8_1_transition import Transition
-from L2_Int1_8_1_synchronization import synchronize
+from L2_Int1_8_automaton import Automaton
+from L2_Int1_8_state import State
+from L2_Int1_8_transition import Transition
+from L2_Int1_8_synchronization import synchronize
 
-def determinize(automaton):
+def determinize(automaton, file=None):
 	# Copy the synchronous automaton not to break the references to the previous one
-	automaton = synchronize(automaton)
+	automaton = synchronize(automaton, file=file)
 
-	if automaton.is_deterministic():
+	if automaton.is_deterministic(file=file):
 		return automaton
 
 	# Create a new automaton not to break the references to the previous one
