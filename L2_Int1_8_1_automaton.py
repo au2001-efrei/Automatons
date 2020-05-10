@@ -3,10 +3,10 @@
 import re
 import sys
 
-from .letter import Letter
-from .alphabet import Alphabet
-from .state import State
-from .transition import Transition
+from L2_Int1_8_1_letter import Letter
+from L2_Int1_8_1_alphabet import Alphabet
+from L2_Int1_8_1_state import State
+from L2_Int1_8_1_transition import Transition
 
 LETTERS = "abcdefghijklmnopqrstuvwxyz"
 STATES = list(map(str, range(100)))

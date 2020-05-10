@@ -9,7 +9,7 @@ Transition table:
  → 0 | 1 2 |  2  
   1  |     |  3  
  ← 2 |  3  |  2  
- ← 3 | 3 2 | 3 2 
+ ← 3 | 2 3 | 3 2 
 
 2. Determinizing and completing automaton...
 Alphabet: a b

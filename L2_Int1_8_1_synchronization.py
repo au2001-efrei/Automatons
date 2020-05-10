@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from automaton_types.transition import Transition
+from L2_Int1_8_1_transition import Transition
 
 def get_epsilon(automaton):
 	for letter in automaton.alphabet.letters:

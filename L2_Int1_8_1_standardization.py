@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-from automaton_types.state import State
-from automaton_types.transition import Transition
+from L2_Int1_8_1_state import State
+from L2_Int1_8_1_transition import Transition
 
 def standardize(automaton):
 	# Copy the automaton not to break the references to the previous one

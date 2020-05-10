@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-from automaton_types.automaton import Automaton
-from automaton_types.state import State
-from automaton_types.transition import Transition
-from .synchronization import synchronize
+from L2_Int1_8_1_automaton import Automaton
+from L2_Int1_8_1_state import State
+from L2_Int1_8_1_transition import Transition
+from L2_Int1_8_1_synchronization import synchronize
 
 def determinize(automaton):
 	# Copy the synchronous automaton not to break the references to the previous one

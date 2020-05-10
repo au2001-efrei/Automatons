@@ -28,16 +28,16 @@ Transition table:
 
 3. Minimizing automaton...
 Alphabet: a b c d
-Initial states:
+Initial states: 1+2
 Terminal states: 0
 Transition table:
-  /  |  a  | b | c | d 
------+-----+---+---+---
- ← 0 |  X  | X | X | 0 
- 1+2 | 1+2 | 3 | 4 | 0 
-  3  |  X  | 3 | 4 | 0 
-  4  |  X  | X | 4 | 0 
-  X  |  X  | X | X | X 
+   /   |  a  | b | c | d 
+-------+-----+---+---+---
+  ← 0  |  X  | X | X | 0 
+ → 1+2 | 1+2 | 3 | 4 | 0 
+   3   |  X  | 3 | 4 | 0 
+   4   |  X  | X | 4 | 0 
+   X   |  X  | X | X | X 
 
 4. Starting word recognition...
 This step was skipped in this output file.
@@ -45,13 +45,16 @@ Execute the program to test word recognition by yourself.
 
 5. Creating an automaton which recognizes the complementary language...
 Alphabet: a b c d
-Initial states: 
-Terminal states:  X
+Initial states: 1+2
+Terminal states: 1+2 3 4 X
 Transition table:
-  /  | a | b | c | d 
------+---+---+---+---
- ←→  | X | X | X | X 
- ← X | X | X | X | X 
+   /    |  a  | b | c | d 
+--------+-----+---+---+---
+   0    |  X  | X | X | 0 
+ ←→ 1+2 | 1+2 | 3 | 4 | 0 
+  ← 3   |  X  | 3 | 4 | 0 
+  ← 4   |  X  | X | 4 | 0 
+  ← X   |  X  | X | X | X 
 
 6. Starting word recognition...
 This step was skipped in this output file.
@@ -59,13 +62,17 @@ Execute the program to test word recognition by yourself.
 
 7. Standardizing automaton...
 Alphabet: a b c d
-Initial states: 
-Terminal states:  X
+Initial states: I
+Terminal states: 1+2 3 4 X
 Transition table:
-  /  | a | b | c | d 
------+---+---+---+---
- ←→  | X | X | X | X 
- ← X | X | X | X | X 
+   /   |  a  | b | c | d 
+-------+-----+---+---+---
+   0   |  X  | X | X | 0 
+ ← 1+2 | 1+2 | 3 | 4 | 0 
+  ← 3  |  X  | 3 | 4 | 0 
+  ← 4  |  X  | X | 4 | 0 
+  → I  | 1+2 | 3 | 4 | 0 
+  ← X  |  X  | X | X | X 
 
 8. Starting word recognition...
 This step was skipped in this output file.

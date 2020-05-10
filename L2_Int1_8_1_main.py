@@ -3,20 +3,19 @@
 import os
 import re
 
-from automaton_types.automaton import Automaton
-from operations.determinization import determinize
-from operations.completion import complete
-from operations.minimization import minimize
-from operations.complementation import complement
-from operations.standardization import standardize
-from operations.recognition import recognize
+from L2_Int1_8_1_automaton import Automaton
+from L2_Int1_8_1_determinization import determinize
+from L2_Int1_8_1_completion import complete
+from L2_Int1_8_1_minimization import minimize
+from L2_Int1_8_1_complementation import complement
+from L2_Int1_8_1_standardization import standardize
+from L2_Int1_8_1_recognition import recognize
 
-DIRECTORY = "./automatons/"
 FILE_FORMAT = "Int1-8-%d.txt"
 
 def main():
 	automatas = set()
-	for file in os.listdir(DIRECTORY):
+	for file in os.listdir("."):
 		match = re.match(FILE_FORMAT.replace(r"%d", r"(\d+)"), file)
 		if match:
 			automatas.add(int(match.group(1)))
@@ -38,9 +37,12 @@ def main():
 					if automaton_id.lower() in ["quit", "exit", "end", "q"]:
 						break
 
+			if not automaton_id in automatas:
+				break
+
 			print()
 			print("1. Reading automaton...")
-			file_path = os.path.join(DIRECTORY, FILE_FORMAT % automaton_id)
+			file_path = FILE_FORMAT % automaton_id
 			automaton = Automaton.read_from_file(file_path)
 			automaton.display()
 

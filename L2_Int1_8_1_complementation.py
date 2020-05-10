@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-from .determinization import determinize
-from .completion import complete
+from L2_Int1_8_1_determinization import determinize
+from L2_Int1_8_1_completion import complete
 
 def complement(automaton):
 	# Copy the complete deterministic automaton not to break the references to the previous one
