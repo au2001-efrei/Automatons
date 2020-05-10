@@ -1,0 +1,79 @@
+
+1. Reading automaton...
+Alphabet: a b c d
+Initial states: 1
+Terminal states: 4
+Transition table:
+  /  | a | b | c | d 
+-----+---+---+---+---
+  0  | 0 |   |   |   
+ → 1 | 1 | 2 | 3 | 4 
+  2  | 0 | 2 | 3 | 4 
+  3  | 0 | 0 | 3 | 4 
+ ← 4 | 0 | 0 | 0 | 4 
+
+2. Determinizing and completing automaton...
+Alphabet: a b c d
+Initial states: 1
+Terminal states: 4
+Transition table:
+  /  | a | b | c | d 
+-----+---+---+---+---
+  0  | 0 | X | X | X 
+ → 1 | 1 | 2 | 3 | 4 
+  2  | 0 | 2 | 3 | 4 
+  3  | 0 | 0 | 3 | 4 
+ ← 4 | 0 | 0 | 0 | 4 
+  X  | X | X | X | X 
+
+3. Minimizing automaton...
+Alphabet: a b c d
+Initial states: 1
+Terminal states: 4
+Transition table:
+  /  |  a  |  b  |  c  |  d  
+-----+-----+-----+-----+-----
+ 0+X | 0+X | 0+X | 0+X | 0+X 
+ → 1 |  1  |  2  |  3  |  4  
+  2  | 0+X |  2  |  3  |  4  
+  3  | 0+X | 0+X |  3  |  4  
+ ← 4 | 0+X | 0+X | 0+X |  4  
+
+4. Starting word recognition...
+This step was skipped in this output file.
+Execute the program to test word recognition by yourself.
+
+5. Creating an automaton which recognizes the complementary language...
+Alphabet: a b c d
+Initial states: 1
+Terminal states: 0+X 1 2 3
+Transition table:
+   /   |  a  |  b  |  c  |  d  
+-------+-----+-----+-----+-----
+ ← 0+X | 0+X | 0+X | 0+X | 0+X 
+  ←→ 1 |  1  |  2  |  3  |  4  
+  ← 2  | 0+X |  2  |  3  |  4  
+  ← 3  | 0+X | 0+X |  3  |  4  
+   4   | 0+X | 0+X | 0+X |  4  
+
+6. Starting word recognition...
+This step was skipped in this output file.
+Execute the program to test word recognition by yourself.
+
+7. Standardizing automaton...
+Alphabet: a b c d
+Initial states: I
+Terminal states: 0+X 1 2 3
+Transition table:
+   /   |  a  |  b  |  c  |  d  
+-------+-----+-----+-----+-----
+ ← 0+X | 0+X | 0+X | 0+X | 0+X 
+  ← 1  |  1  |  2  |  3  |  4  
+  ← 2  | 0+X |  2  |  3  |  4  
+  ← 3  | 0+X | 0+X |  3  |  4  
+   4   | 0+X | 0+X | 0+X |  4  
+  → I  |  1  |  2  |  3  |  4  
+
+8. Starting word recognition...
+This step was skipped in this output file.
+Execute the program to test word recognition by yourself.

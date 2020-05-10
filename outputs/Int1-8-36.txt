@@ -1,0 +1,74 @@
+
+1. Reading automaton...
+Alphabet: a b
+Initial states: 0 2
+Terminal states: 1 2
+Transition table:
+  /   |  a  |  b  
+------+-----+-----
+ → 0  |  1  | 2 1 
+ ← 1  |     | 0 2 
+ ←→ 2 | 0 1 |     
+
+2. Determinizing and completing automaton...
+Alphabet: a b
+Initial states: 0,2
+Terminal states: 0,1 0,1,2 0,2 1 1,2
+Transition table:
+    /    |  a  |   b   
+---------+-----+-------
+  ← 0,1  |  1  | 0,1,2 
+ ← 0,1,2 | 0,1 | 0,1,2 
+  ←→ 0,2 | 0,1 |  1,2  
+   ← 1   |  X  |  0,2  
+  ← 1,2  | 0,1 |  0,2  
+    X    |  X  |   X   
+
+3. Minimizing automaton...
+Alphabet: a b
+Initial states: 0,1,2+0,2+1,2
+Terminal states: 0,1 0,1,2+0,2+1,2 1
+Transition table:
+        /         |  a  |       b       
+------------------+-----+---------------
+      ← 0,1       |  1  | 0,1,2+0,2+1,2 
+ ←→ 0,1,2+0,2+1,2 | 0,1 | 0,1,2+0,2+1,2 
+       ← 1        |  X  | 0,1,2+0,2+1,2 
+        X         |  X  |       X       
+
+4. Starting word recognition...
+This step was skipped in this output file.
+Execute the program to test word recognition by yourself.
+
+5. Creating an automaton which recognizes the complementary language...
+Alphabet: a b
+Initial states: 0,1,2+0,2+1,2
+Terminal states: X
+Transition table:
+        /        |  a  |       b       
+-----------------+-----+---------------
+       0,1       |  1  | 0,1,2+0,2+1,2 
+ → 0,1,2+0,2+1,2 | 0,1 | 0,1,2+0,2+1,2 
+        1        |  X  | 0,1,2+0,2+1,2 
+       ← X       |  X  |       X       
+
+6. Starting word recognition...
+This step was skipped in this output file.
+Execute the program to test word recognition by yourself.
+
+7. Standardizing automaton...
+Alphabet: a b
+Initial states: I
+Terminal states: X
+Transition table:
+       /       |  a  |       b       
+---------------+-----+---------------
+      0,1      |  1  | 0,1,2+0,2+1,2 
+ 0,1,2+0,2+1,2 | 0,1 | 0,1,2+0,2+1,2 
+       1       |  X  | 0,1,2+0,2+1,2 
+      → I      | 0,1 | 0,1,2+0,2+1,2 
+      ← X      |  X  |       X       
+
+8. Starting word recognition...
+This step was skipped in this output file.
+Execute the program to test word recognition by yourself.

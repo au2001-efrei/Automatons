@@ -1,0 +1,81 @@
+
+1. Reading automaton...
+Alphabet: a b c d
+Initial states: 1
+Terminal states: 0
+Transition table:
+  /  | a | b | c | d 
+-----+---+---+---+---
+ ← 0 |   |   |   | 0 
+ → 1 | 2 |   |   |   
+  2  | 2 | 3 |   |   
+  3  |   | 3 | 4 |   
+  4  |   |   | 4 | 0 
+
+2. Determinizing and completing automaton...
+Alphabet: a b c d
+Initial states: 1
+Terminal states: 0
+Transition table:
+  /  | a | b | c | d 
+-----+---+---+---+---
+ ← 0 | X | X | X | 0 
+ → 1 | 2 | X | X | X 
+  2  | 2 | 3 | X | X 
+  3  | X | 3 | 4 | X 
+  4  | X | X | 4 | 0 
+  X  | X | X | X | X 
+
+3. Minimizing automaton...
+Alphabet: a b c d
+Initial states: 1
+Terminal states: 0
+Transition table:
+  /  | a | b | c | d 
+-----+---+---+---+---
+ ← 0 | X | X | X | 0 
+ → 1 | 2 | X | X | X 
+  2  | 2 | 3 | X | X 
+  3  | X | 3 | 4 | X 
+  4  | X | X | 4 | 0 
+  X  | X | X | X | X 
+
+4. Starting word recognition...
+This step was skipped in this output file.
+Execute the program to test word recognition by yourself.
+
+5. Creating an automaton which recognizes the complementary language...
+Alphabet: a b c d
+Initial states: 1
+Terminal states: 1 2 3 4 X
+Transition table:
+  /   | a | b | c | d 
+------+---+---+---+---
+  0   | X | X | X | 0 
+ ←→ 1 | 2 | X | X | X 
+ ← 2  | 2 | 3 | X | X 
+ ← 3  | X | 3 | 4 | X 
+ ← 4  | X | X | 4 | 0 
+ ← X  | X | X | X | X 
+
+6. Starting word recognition...
+This step was skipped in this output file.
+Execute the program to test word recognition by yourself.
+
+7. Standardizing automaton...
+Alphabet: a b c d
+Initial states: 1
+Terminal states: 1 2 3 4 X
+Transition table:
+  /   | a | b | c | d 
+------+---+---+---+---
+  0   | X | X | X | 0 
+ ←→ 1 | 2 | X | X | X 
+ ← 2  | 2 | 3 | X | X 
+ ← 3  | X | 3 | 4 | X 
+ ← 4  | X | X | 4 | 0 
+ ← X  | X | X | X | X 
+
+8. Starting word recognition...
+This step was skipped in this output file.
+Execute the program to test word recognition by yourself.
