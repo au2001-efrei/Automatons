@@ -30,7 +30,7 @@ def minimize(automaton):
 				state_pattern = {}
 
 				# For each outgoing transition of each state in the group, create its state pattern
-				# (transition table where the groups in which the destinations are part of are displayed rather than the destinations themselves)
+				# (transition table where the groups the destinations are part of, are displayed, rather than the destinations themselves)
 				for transition in state.transitions_from:
 					for i, in_group in enumerate(partition):
 						if transition.state_to in in_group:

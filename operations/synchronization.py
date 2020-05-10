@@ -11,6 +11,7 @@ def get_epsilon(automaton):
 	return None
 
 def get_asynchronous_states(state, epsilon=None, parents=None):
+	# This function returns all states connected with an empty state transition
 	if parents is None:
 		parents = set()
 	elif state in parents:
@@ -23,7 +24,7 @@ def get_asynchronous_states(state, epsilon=None, parents=None):
 
 	asynchronous_states = set()
 
-	# Add each state connected with an epsilon transition, and start again recursively
+	# Add each state connected with an epsilon transition to asynchronous states, and repeat recursively
 	for asynchronous_state in state.get_next_states(epsilon):
 		asynchronous_states.add(asynchronous_state)
 		if asynchronous_state not in parents: # Avoid infinite loops
@@ -51,6 +52,7 @@ def get_recursive_next_states(state, letter, parents=None):
 	return next_states
 
 def is_recursive_initial(state, parents=None):
+	# This definition returns true if there is an epsilon transition on an intial state
 	if state.initial:
 		return True
 	if parents is None:
@@ -69,6 +71,7 @@ def is_recursive_initial(state, parents=None):
 	return False
 
 def is_recursive_terminal(state, parents=None):
+	# This definition returns true if there is an epsilon transition on an terminal state
 	if state.terminal:
 		return True
 	if parents is None:
@@ -101,7 +104,7 @@ def synchronize(automaton):
 
 	for state in synchronous_automaton.states:
 		for letter in letters:
-			# For each state and letter, find the ones connected to it through an epsilon and add a direct transition
+			# For each state and letter, find the ones connected to it through an epsilon and add a direct transition between them
 			next_states = get_recursive_next_states(state, letter)
 			next_states -= state.get_next_states(letter)
 

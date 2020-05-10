@@ -12,7 +12,8 @@ LETTERS = "abcdefghijklmnopqrstuvwxyz"
 STATES = list(map(str, range(100)))
 
 class Automaton(object):
-
+	# We initialize the object with the following structure: the alphabet accepted by the automaton,
+	# the states within the automaton, the transitions, and the initial and final states
 	def __init__(self, alphabet=None, states=None, transitions=None, initial_states=None, terminal_states=None):
 		super(Automaton, self).__init__()
 
@@ -43,6 +44,7 @@ class Automaton(object):
 
 		return None
 
+	# To check if an automata is asynchronous, we must check if it contains an empty state
 	def is_asynchronous(self):
 		for transition in self.transitions:
 			if transition.letter.epsilon:
@@ -58,8 +60,10 @@ class Automaton(object):
 			return False
 
 		for transition in self.transitions:
-			pair = (transition.state_from, transition.letter)
-			if pair in pairs: # There must be at most one pair (from state, letter)
+			# We generate a list of pairs containing the state before the transition
+			# and the name of the transition
+			pair = (transition.state_from, transition.letter) 
+			if pair in pairs: # Each pair of the automaton's transitions must be unique
 				return False
 
 			pairs.add(pair)
