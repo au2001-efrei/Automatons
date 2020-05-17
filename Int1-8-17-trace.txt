@@ -57,7 +57,7 @@ Execute the program to test word recognition by yourself.
 
 5. Creating an automaton which recognizes the complementary language...
 This automaton is already synchronous.
-This automaton is not deterministic because it has several transitions with the same origin (0+X) and letter (d).
+This automaton is not deterministic because it has several transitions with the same origin (0+X) and letter (a).
 This automaton is already synchronous.
 This automaton is already complete.
 Alphabet: a b c d

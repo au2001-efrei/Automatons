@@ -30,7 +30,7 @@ Transition table:
   9   |   21  |    |    |    
 
 2. Determinizing and completing automaton...
-This automaton is asynchronous because it has at least one epsilon transition (4*3).
+This automaton is asynchronous because it has at least one epsilon transition (0*1).
 This automaton is not deterministic because it has 16 initial states (more than one).
 This automaton is already synchronous.
 This automaton is incomplete because it misses 11 transition(s).

@@ -14,7 +14,7 @@ Transition table:
 
 2. Determinizing and completing automaton...
 This automaton is already synchronous.
-This automaton is not deterministic because it has several transitions with the same origin (3) and letter (c).
+This automaton is not deterministic because it has several transitions with the same origin (1) and letter (a).
 This automaton is already synchronous.
 This automaton is incomplete because it misses 12 transition(s).
 Alphabet: a b c d

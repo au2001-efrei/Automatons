@@ -21,7 +21,7 @@ Transition table:
   9   |     |   | 10 |    
 
 2. Determinizing and completing automaton...
-This automaton is asynchronous because it has at least one epsilon transition (7*8).
+This automaton is asynchronous because it has at least one epsilon transition (0*1).
 This automaton is not deterministic because it has 10 initial states (more than one).
 This automaton is already synchronous.
 This automaton is incomplete because it misses 11 transition(s).
@@ -65,7 +65,7 @@ Execute the program to test word recognition by yourself.
 
 5. Creating an automaton which recognizes the complementary language...
 This automaton is already synchronous.
-This automaton is not deterministic because it has several transitions with the same origin (11,3,5,8+11,8) and letter (b).
+This automaton is not deterministic because it has several transitions with the same origin (11,12+11,12,6) and letter (a).
 This automaton is already synchronous.
 This automaton is already complete.
 Alphabet: a b c

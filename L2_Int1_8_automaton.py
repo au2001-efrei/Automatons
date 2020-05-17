@@ -48,7 +48,7 @@ class Automaton(object):
 
 	# To check if an automata is asynchronous, we must check if it contains an empty state
 	def is_asynchronous(self, file=None):
-		for transition in self.transitions:
+		for transition in sorted(self.transitions, key=lambda transition: (transition.state_from.state_id, transition.state_to.state_id, transition.letter.character)):
 			if transition.letter.epsilon:
 				print("This automaton is asynchronous because it has at least one epsilon transition (%s%s%s)." % (transition.state_from.state_id, transition.letter.character, transition.state_to.state_id), file=file)
 				return True
@@ -63,7 +63,7 @@ class Automaton(object):
 			return False
 
 		pairs = set()
-		for transition in self.transitions:
+		for transition in sorted(self.transitions, key=lambda transition: (transition.state_from.state_id, transition.state_to.state_id, transition.letter.character)):
 			# We generate a list of pairs containing the state before the transition and the name of the transition
 			pair = (transition.state_from, transition.letter)
 			if pair in pairs: # Each pair of the automaton's transitions must be unique
@@ -105,7 +105,7 @@ class Automaton(object):
 
 		initial_state = next(iter(self.initial_states))
 
-		for transition in self.transitions:
+		for transition in sorted(self.transitions, key=lambda transition: (transition.state_from.state_id, transition.state_to.state_id, transition.letter.character)):
 			if transition.state_to == initial_state: # There must be no transition pointing to the (unique) initial state
 				print("This automaton is not standard because it has at least one transition with destination the initial state (%s%s%s)." % (transition.state_from.state_id, transition.letter.character, transition.state_to.state_id), file=file)
 				return False
