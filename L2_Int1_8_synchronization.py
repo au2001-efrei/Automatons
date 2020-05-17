@@ -88,18 +88,18 @@ def is_recursive_terminal(state, parents=None):
 
 def synchronize(automaton, file=None):
 	# Copy the automaton not to break the references to the previous one
-	synchronous_automaton = automaton.copy()
+	automaton = automaton.copy()
 
 	if not automaton.is_asynchronous(file=file):
 		return automaton
 
 	# Find all the non-epsilon letters
 	letters = []
-	for letter in synchronous_automaton.alphabet.letters:
+	for letter in automaton.alphabet.letters:
 		if not letter.epsilon:
 			letters.append(letter)
 
-	for state in synchronous_automaton.states:
+	for state in automaton.states:
 		for letter in letters:
 			# For each state and letter, find the ones connected to it through an epsilon and add a direct transition between them
 			next_states = get_recursive_next_states(state, letter)
@@ -111,16 +111,16 @@ def synchronize(automaton, file=None):
 		# If the state is connected to an initial state through incoming epsilon transitions, mark it as initial
 		if is_recursive_initial(state):
 			state.initial = True
-			synchronous_automaton.initial_states.add(state)
+			automaton.initial_states.add(state)
 
 		# If the state is connected to a terminal state through outgoing epsilon transitions, mark it as terminal
 		if is_recursive_terminal(state):
 			state.terminal = True
-			synchronous_automaton.terminal_states.add(state)
+			automaton.terminal_states.add(state)
 
 	# Remove all epsilon transitions which are now useless
-	for transition in synchronous_automaton.transitions.copy():
+	for transition in automaton.transitions.copy():
 		if transition.letter.epsilon:
 			transition.remove()
 
-	return synchronous_automaton
+	return automaton
