@@ -6,7 +6,6 @@ def get_epsilon(automaton):
 	for letter in automaton.alphabet.letters:
 		if letter.epsilon:
 			return letter
-			break
 
 	return None
 
@@ -27,8 +26,7 @@ def get_asynchronous_states(state, epsilon=None, parents=None):
 	# Add each state connected with an epsilon transition to asynchronous states, and repeat recursively
 	for asynchronous_state in state.get_next_states(epsilon):
 		asynchronous_states.add(asynchronous_state)
-		if asynchronous_state not in parents: # Avoid infinite loops
-			asynchronous_states.update(get_asynchronous_states(asynchronous_state, parents.union({state,})))
+		asynchronous_states.update(get_asynchronous_states(asynchronous_state, parents.union({state,})))
 
 	return asynchronous_states
 
@@ -46,8 +44,7 @@ def get_recursive_next_states(state, letter, parents=None):
 
 	# Find all "equivalent" states, and start again recursively
 	for asynchronous_state in get_asynchronous_states(state):
-		if asynchronous_state not in parents: # Avoid infinite loops
-			next_states.update(get_recursive_next_states(asynchronous_state, letter, parents.union({state,})))
+		next_states.update(get_recursive_next_states(asynchronous_state, letter, parents.union({state,})))
 
 	return next_states
 
@@ -65,7 +62,7 @@ def is_recursive_initial(state, parents=None):
 		return next_states
 
 	for asynchronous_state in state.get_previous_states(epsilon):
-		if asynchronous_state not in parents and is_recursive_initial(asynchronous_state, parents.union({state,})):
+		if is_recursive_initial(asynchronous_state, parents.union({state,})):
 			return True
 
 	return False
