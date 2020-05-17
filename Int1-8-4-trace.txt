@@ -27,12 +27,12 @@ Transition table:
 3. Minimizing automaton...
 Current partition: {'0', '1', 'X'}
 Alphabet: a
-Initial states:
+Initial states: 0+1+X
 Terminal states:
 Transition table:
-   /   |   a   
--------+-------
- 0+1+X | 0+1+X 
+    /    |   a   
+---------+-------
+ → 0+1+X | 0+1+X 
 
 4. Starting word recognition...
 This step was skipped in this output file.
@@ -42,30 +42,29 @@ Execute the program to test word recognition by yourself.
 This automaton is already synchronous.
 This automaton is not deterministic because it has several transitions with the same origin (0+1+X) and letter (a).
 This automaton is already synchronous.
-This automaton is incomplete because it misses 1 transition(s).
+This automaton is already complete.
 Alphabet: a
-Initial states: 
-Terminal states:  X
+Initial states: 0+1+X
+Terminal states: 0+1+X
 Transition table:
-  /  | a 
------+---
- ←→  | X 
- ← X | X 
+    /     |   a   
+----------+-------
+ ←→ 0+1+X | 0+1+X 
 
 6. Starting word recognition...
 This step was skipped in this output file.
 Execute the program to test word recognition by yourself.
 
 7. Standardizing automaton...
-This automaton is already standard.
+This automaton is not standard because it has at least one transition with destination the initial state (0+1+Xa0+1+X).
 Alphabet: a
-Initial states: 
-Terminal states:  X
+Initial states: I
+Terminal states: 0+1+X
 Transition table:
-  /  | a 
------+---
- ←→  | X 
- ← X | X 
+    /    |   a   
+---------+-------
+ ← 0+1+X | 0+1+X 
+   → I   | 0+1+X 
 
 8. Starting word recognition...
 This step was skipped in this output file.

@@ -45,30 +45,29 @@ Execute the program to test word recognition by yourself.
 This automaton is already synchronous.
 This automaton is not deterministic because it has several transitions with the same origin (0+1+2+3) and letter (a).
 This automaton is already synchronous.
-This automaton is incomplete because it misses 2 transition(s).
+This automaton is already complete.
 Alphabet: a b
-Initial states: 
-Terminal states:  X
+Initial states: 0+1+2+3
+Terminal states:
 Transition table:
-  /  | a | b 
------+---+---
- ←→  | X | X 
- ← X | X | X 
+     /     |    a    |    b    
+-----------+---------+---------
+ → 0+1+2+3 | 0+1+2+3 | 0+1+2+3 
 
 6. Starting word recognition...
 This step was skipped in this output file.
 Execute the program to test word recognition by yourself.
 
 7. Standardizing automaton...
-This automaton is already standard.
+This automaton is not standard because it has at least one transition with destination the initial state (0+1+2+3a0+1+2+3).
 Alphabet: a b
-Initial states: 
-Terminal states:  X
+Initial states: I
+Terminal states:
 Transition table:
-  /  | a | b 
------+---+---
- ←→  | X | X 
- ← X | X | X 
+    /    |    a    |    b    
+---------+---------+---------
+ 0+1+2+3 | 0+1+2+3 | 0+1+2+3 
+   → I   | 0+1+2+3 | 0+1+2+3 
 
 8. Starting word recognition...
 This step was skipped in this output file.

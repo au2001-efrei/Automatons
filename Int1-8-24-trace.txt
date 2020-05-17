@@ -35,16 +35,16 @@ Current partition: {'0'} {'1', '2', '3', '4', 'X'}
 Current partition: {'0'} {'1', '2', '3', '4'} {'X'}
 Current partition: {'0'} {'1', '2'} {'3'} {'4'} {'X'}
 Alphabet: a b c d
-Initial states:
+Initial states: 1+2
 Terminal states: 0
 Transition table:
-  /  |  a  | b | c | d 
------+-----+---+---+---
- ← 0 |  X  | X | X | 0 
- 1+2 | 1+2 | 3 | 4 | 0 
-  3  |  X  | 3 | 4 | 0 
-  4  |  X  | X | 4 | 0 
-  X  |  X  | X | X | X 
+   /   |  a  | b | c | d 
+-------+-----+---+---+---
+  ← 0  |  X  | X | X | 0 
+ → 1+2 | 1+2 | 3 | 4 | 0 
+   3   |  X  | 3 | 4 | 0 
+   4   |  X  | X | 4 | 0 
+   X   |  X  | X | X | X 
 
 4. Starting word recognition...
 This step was skipped in this output file.
@@ -54,30 +54,37 @@ Execute the program to test word recognition by yourself.
 This automaton is already synchronous.
 This automaton is not deterministic because it has several transitions with the same origin (1+2) and letter (d).
 This automaton is already synchronous.
-This automaton is incomplete because it misses 4 transition(s).
+This automaton is already complete.
 Alphabet: a b c d
-Initial states: 
-Terminal states:  X
+Initial states: 1+2
+Terminal states: 1+2 3 4 X
 Transition table:
-  /  | a | b | c | d 
------+---+---+---+---
- ←→  | X | X | X | X 
- ← X | X | X | X | X 
+   /    |  a  | b | c | d 
+--------+-----+---+---+---
+   0    |  X  | X | X | 0 
+ ←→ 1+2 | 1+2 | 3 | 4 | 0 
+  ← 3   |  X  | 3 | 4 | 0 
+  ← 4   |  X  | X | 4 | 0 
+  ← X   |  X  | X | X | X 
 
 6. Starting word recognition...
 This step was skipped in this output file.
 Execute the program to test word recognition by yourself.
 
 7. Standardizing automaton...
-This automaton is already standard.
+This automaton is not standard because it has at least one transition with destination the initial state (1+2a1+2).
 Alphabet: a b c d
-Initial states: 
-Terminal states:  X
+Initial states: I
+Terminal states: 1+2 3 4 X
 Transition table:
-  /  | a | b | c | d 
------+---+---+---+---
- ←→  | X | X | X | X 
- ← X | X | X | X | X 
+   /   |  a  | b | c | d 
+-------+-----+---+---+---
+   0   |  X  | X | X | 0 
+ ← 1+2 | 1+2 | 3 | 4 | 0 
+  ← 3  |  X  | 3 | 4 | 0 
+  ← 4  |  X  | X | 4 | 0 
+  → I  | 1+2 | 3 | 4 | 0 
+  ← X  |  X  | X | X | X 
 
 8. Starting word recognition...
 This step was skipped in this output file.

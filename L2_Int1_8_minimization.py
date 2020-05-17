@@ -81,6 +81,11 @@ def minimize(automaton, file=None):
 			if state == new_state:
 				continue
 
+			# If at least one state is initial, then the group is, too
+			if state.initial:
+				new_state.initial = True
+				automaton.initial_states.add(new_state)
+
 			# Move its incoming transitions to the new state
 			for transition in state.transitions_from.copy():
 				pair = (transition.state_to, transition.letter)
