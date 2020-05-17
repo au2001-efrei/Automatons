@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from L2_Int1_8_state import State
 from L2_Int1_8_transition import Transition
 
 def minimize(automaton, file=None):
@@ -69,22 +70,22 @@ def minimize(automaton, file=None):
 		if len(group) == 1:
 			continue
 
-		# Otherwise, take one random state and rename it to the concatenation of all states in the group (using a plus sign to differentiate with determinization)
-		new_state = next(iter(group))
-		new_state.state_id = "+".join(sorted(map(lambda state: state.state_id, group)))
+		# Otherwise, create a new state with ID the concatenation of all states in the group (using a plus sign to differentiate with determinization)
+		new_state = State(automaton, "+".join(sorted(map(lambda state: state.state_id, group))))
 
 		incoming_pairs = set()
 		outgoing_pairs = set()
 
-		# For each other state in the group
+		# For each state in the group
 		for state in group:
-			if state == new_state:
-				continue
-
-			# If at least one state is initial, then the group is, too
+			# If at least one state is initial/terminal, then the group is, too
 			if state.initial:
 				new_state.initial = True
 				automaton.initial_states.add(new_state)
+
+			if state.terminal:
+				new_state.terminal = True
+				automaton.terminal_states.add(new_state)
 
 			# Move its incoming transitions to the new state
 			for transition in state.transitions_to.copy():
