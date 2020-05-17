@@ -87,23 +87,21 @@ def minimize(automaton, file=None):
 				automaton.initial_states.add(new_state)
 
 			# Move its incoming transitions to the new state
-			for transition in state.transitions_from.copy():
-				pair = (transition.state_to, transition.letter)
-				if pair in incoming_pairs:
-					continue
-				incoming_pairs.add(pair)
+			for transition in state.transitions_to.copy():
+				pair = (transition.state_from, transition.letter)
+				if pair not in incoming_pairs:
+					incoming_pairs.add(pair)
+					Transition(transition.state_from, new_state, transition.letter)
 
-				Transition(new_state, transition.state_to, transition.letter)
 				transition.remove()
 
 			# Move its outgoing transitions to the new state
-			for transition in state.transitions_to.copy():
-				pair = (transition.state_from, transition.letter)
-				if pair in outgoing_pairs:
-					continue
-				outgoing_pairs.add(pair)
+			for transition in state.transitions_from.copy():
+				pair = (transition.state_to, transition.letter)
+				if pair not in outgoing_pairs:
+					outgoing_pairs.add(pair)
+					Transition(new_state, transition.state_to, transition.letter)
 
-				Transition(transition.state_from, new_state, transition.letter)
 				transition.remove()
 
 			# Remove this state as it is now merged into "new_state"
