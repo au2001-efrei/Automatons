@@ -28,14 +28,14 @@ Transition table:
  ← 3  | 3 | 3 
 
 3. Minimizing automaton...
-Current partition: {'3', '0', '2', '1'}
+Current partition: {'0', '1', '2', '3'}
 Alphabet: a b
-Initial states:
+Initial states: 0+1+2+3
 Terminal states: 0+1+2+3
 Transition table:
-     /     |    a    |    b    
------------+---------+---------
- ← 0+1+2+3 | 0+1+2+3 | 0+1+2+3 
+     /      |    a    |    b    
+------------+---------+---------
+ ←→ 0+1+2+3 | 0+1+2+3 | 0+1+2+3 
 
 4. Starting word recognition...
 This step was skipped in this output file.

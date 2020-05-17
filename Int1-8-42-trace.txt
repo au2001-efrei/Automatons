@@ -31,9 +31,9 @@ Transition table:
   X   | X | X | X 
 
 3. Minimizing automaton...
-Current partition: {'2'} {'0', '3', '1', 'X', '4'}
-Current partition: {'2'} {'0', '1'} {'X', '4', '3'}
-Current partition: {'2'} {'0'} {'1'} {'X', '4', '3'}
+Current partition: {'0', '1', '3', '4', 'X'} {'2'}
+Current partition: {'0', '1'} {'2'} {'3', '4', 'X'}
+Current partition: {'0'} {'1'} {'2'} {'3', '4', 'X'}
 Alphabet: a b c
 Initial states: 2
 Terminal states: 2

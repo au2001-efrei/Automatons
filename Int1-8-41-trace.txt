@@ -32,8 +32,8 @@ Transition table:
   5  | 5 | 5 
 
 3. Minimizing automaton...
-Current partition: {'4', '3', '2', '1'} {'0', '5'}
-Current partition: {'2', '1'} {'4', '3'} {'5'} {'0'}
+Current partition: {'0', '5'} {'1', '2', '3', '4'}
+Current partition: {'0'} {'1', '2'} {'3', '4'} {'5'}
 Alphabet: a b
 Initial states: 0
 Terminal states: 1+2 3+4

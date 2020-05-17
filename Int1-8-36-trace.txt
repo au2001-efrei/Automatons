@@ -6,7 +6,7 @@ Terminal states: 1 2
 Transition table:
   /   |  a  |  b  
 ------+-----+-----
- → 0  |  1  | 2 1 
+ → 0  |  1  | 1 2 
  ← 1  |     | 0 2 
  ←→ 2 | 0 1 |     
 
@@ -29,9 +29,9 @@ Transition table:
     X    |  X  |   X   
 
 3. Minimizing automaton...
-Current partition: {'0,1,2', '1', '0,1', '0,2', '1,2'} {'X'}
+Current partition: {'0,1', '0,1,2', '0,2', '1', '1,2'} {'X'}
 Current partition: {'0,1', '0,1,2', '0,2', '1,2'} {'1'} {'X'}
-Current partition: {'0,1'} {'0,2', '1,2', '0,1,2'} {'1'} {'X'}
+Current partition: {'0,1'} {'0,1,2', '0,2', '1,2'} {'1'} {'X'}
 Alphabet: a b
 Initial states: 0,1,2+0,2+1,2
 Terminal states: 0,1 0,1,2+0,2+1,2 1

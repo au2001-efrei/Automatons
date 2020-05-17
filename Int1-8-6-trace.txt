@@ -29,7 +29,7 @@ Transition table:
 
 3. Minimizing automaton...
 Current partition: {'0', '2'} {'1,3', 'X'}
-Current partition: {'0', '2'} {'X'} {'1,3'}
+Current partition: {'0', '2'} {'1,3'} {'X'}
 Alphabet: a b
 Initial states: 1,3
 Terminal states: 0+2

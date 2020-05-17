@@ -190,7 +190,7 @@ class Automaton(object):
 
 			for i, letter in enumerate(sorted(letters, key=lambda letter: letter.character)):
 				next_states = state.get_next_states(letter)
-				next_states = " ".join(map(lambda state: state.state_id, next_states))
+				next_states = " ".join(sorted(map(lambda state: state.state_id, next_states)))
 				print("|" + next_states.center(columns_width[i + 1] + 2), end="", file=file)
 			print(file=file)
 

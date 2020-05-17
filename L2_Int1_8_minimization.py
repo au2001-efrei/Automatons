@@ -16,7 +16,7 @@ def minimize(automaton, file=None):
 	# While there is at least one group which was split, continue to test and divide them
 	divided = True
 	while divided:
-		print("Current partition:", *map(lambda group: set(map(lambda state: state.state_id, group)), partition), file=file)
+		print("Current partition:", *sorted(map(lambda group: "{%s}" % ", ".join(sorted(map(lambda state: "'%s'" % state.state_id, group))), partition)), file=file)
 		new_partition = []
 		divided = False
 

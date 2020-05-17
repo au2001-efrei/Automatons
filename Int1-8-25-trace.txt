@@ -9,8 +9,8 @@ Transition table:
  ← 0 |     |     |     |     
  → 1 | 1 2 |  3  |  4  |  0  
   2  |     | 2 3 |  4  |  0  
-  3  |     |     | 4 3 |  0  
-  4  |     |     |     | 4 0 
+  3  |     |     | 3 4 |  0  
+  4  |     |     |     | 0 4 
 
 2. Determinizing and completing automaton...
 This automaton is already synchronous.
@@ -34,10 +34,10 @@ Transition table:
    X   |  X  |  X  |  X  |  X  
 
 3. Minimizing automaton...
-Current partition: {'0,4', '0'} {'3,4', '3', '1', '2,3', '1,2', 'X', '4'}
-Current partition: {'0,4'} {'0'} {'3,4', '3', '1', '2,3', '1,2', '4'} {'X'}
-Current partition: {'0,4'} {'0'} {'3,4'} {'2,3'} {'3'} {'1,2', '1'} {'4'} {'X'}
-Current partition: {'0,4'} {'0'} {'3,4'} {'2,3'} {'3'} {'1'} {'1,2'} {'4'} {'X'}
+Current partition: {'0', '0,4'} {'1', '1,2', '2,3', '3', '3,4', '4', 'X'}
+Current partition: {'0'} {'0,4'} {'1', '1,2', '2,3', '3', '3,4', '4'} {'X'}
+Current partition: {'0'} {'0,4'} {'1', '1,2'} {'2,3'} {'3'} {'3,4'} {'4'} {'X'}
+Current partition: {'0'} {'0,4'} {'1'} {'1,2'} {'2,3'} {'3'} {'3,4'} {'4'} {'X'}
 This automaton is already minimized.
 Alphabet: a b c d
 Initial states: 1

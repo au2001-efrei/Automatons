@@ -31,9 +31,9 @@ Transition table:
   X   | X | X 
 
 3. Minimizing automaton...
-Current partition: {'0', '3', '1', '2', '4'} {'X'}
-Current partition: {'0', '3', '1'} {'4'} {'2'} {'X'}
-Current partition: {'1'} {'3', '0'} {'4'} {'2'} {'X'}
+Current partition: {'0', '1', '2', '3', '4'} {'X'}
+Current partition: {'0', '1', '3'} {'2'} {'4'} {'X'}
+Current partition: {'0', '3'} {'1'} {'2'} {'4'} {'X'}
 Alphabet: a b
 Initial states:
 Terminal states: 0+3 1 2 4
@@ -56,28 +56,33 @@ This automaton is not deterministic because it has several transitions with the 
 This automaton is already synchronous.
 This automaton is incomplete because it misses 2 transition(s).
 Alphabet: a b
-Initial states: 
-Terminal states:  X
+Initial states:
+Terminal states: X
 Transition table:
-  /  | a | b 
------+---+---
- ←→  | X | X 
- ← X | X | X 
+  /  | a |  b  
+-----+---+-----
+ 0+3 | 1 | 0+3 
+  1  | 2 |  4  
+  2  | X | 0+3 
+  4  | 1 |  X  
+ ← X | X |  X  
 
 6. Starting word recognition...
 This step was skipped in this output file.
 Execute the program to test word recognition by yourself.
 
 7. Standardizing automaton...
-This automaton is already standard.
 Alphabet: a b
-Initial states: 
-Terminal states:  X
+Initial states:
+Terminal states: X
 Transition table:
-  /  | a | b 
------+---+---
- ←→  | X | X 
- ← X | X | X 
+  /  | a |  b  
+-----+---+-----
+ 0+3 | 1 | 0+3 
+  1  | 2 |  4  
+  2  | X | 0+3 
+  4  | 1 |  X  
+ ← X | X |  X  
 
 8. Starting word recognition...
 This step was skipped in this output file.

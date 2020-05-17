@@ -29,8 +29,8 @@ Transition table:
  → 1,3 | 0,2 | 0,4 
 
 3. Minimizing automaton...
-Current partition: {'0,2', '0,4'} {'1,3', '0'}
-Current partition: {'0,2', '0,4'} {'0'} {'1,3'}
+Current partition: {'0', '1,3'} {'0,2', '0,4'}
+Current partition: {'0'} {'0,2', '0,4'} {'1,3'}
 Alphabet: a b
 Initial states: 1,3
 Terminal states: 0,2+0,4
